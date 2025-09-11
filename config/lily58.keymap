@@ -37,6 +37,12 @@ TODO:
             #binding-cells = <0>;
             bindings = <&macro_tap &kp UP>, <&macro_tap &kp ENTER>;
         };
+
+        single_backtick: single_backtick {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp ES_GRAVE>, <&macro_tap &kp SPACE>;
+        };
     };
 
     behaviors {
@@ -107,14 +113,14 @@ TODO:
 //    ├─────┼────────────┼──────────┼──────────┼──────────┼─────────┤               ├────────────┼─────────┼─────────┼─────┼─────┼─────┤
 //    │     │ lalt(ES_|) │ lalt(1)  │ lalt(2)  │ lalt(3)  │ lalt(4) │               │ lctl(bspc) │  bspc   │   ent   │ del │     │     │
 //    ├─────┼────────────┼──────────┼──────────┼──────────┼─────────┼─────┐   ┌─────┼────────────┼─────────┼─────────┼─────┼─────┼─────┤
-//    │     │            │ lalt(f4) │ lctl(C)  │ lctl(V)  │ lgui(Q) │     │   │     │            │         │         │     │     │     │
+//    │     │            │ lalt(f4) │ lctl(C)  │ lctl(V)  │         │     │   │     │            │         │         │     │     │     │
 //    └─────┴────────────┼──────────┼──────────┼──────────┼─────────┼─────┘   └─────┼────────────┼─────────┼─────────┼─────┼─────┴─────┘
 //                       │          │          │          │         │               │            │         │         │     │
 //                       └──────────┴──────────┴──────────┴─────────┘               └────────────┴─────────┴─────────┴─────┘
   &trans   &trans            &trans       &trans       &trans       &trans                             &trans              &trans          &trans      &trans       &trans   &trans
   &trans   &kp LA(ESC)       &kp LA(F1)   &kp LA(F2)   &kp LA(F3)   &trans                             &trans              &kp LC(Z)       &kp LC(Y)   &trans       &trans   &trans
   &trans   &kp LA(ES_PIPE)   &kp LA(N1)   &kp LA(N2)   &kp LA(N3)   &kp LA(N4)                         &kp LC(BACKSPACE)   &kp BACKSPACE   &kp ENTER   &kp DELETE   &trans   &trans
-  &trans   &trans            &kp LA(F4)   &kp LC(C)    &kp LC(V)    &kp LG(Q)    &trans       &trans   &trans              &trans          &trans      &trans       &trans   &trans
+  &trans   &trans            &kp LA(F4)   &kp LC(C)    &kp LC(V)    &trans       &trans       &trans   &trans              &trans          &trans      &trans       &trans   &trans
                              &trans       &trans       &trans       &trans                             &trans              &trans          &trans      &trans
            >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
@@ -146,22 +152,22 @@ TODO:
        right_symbols {
             display-name = "Right symbols layer";
             bindings = <
-//    ┌─────┬──────┬──────┬──────┬──────┬─────┐               ┌─────┬─────┬─────┬─────┬─────┬─────┐
-//    │     │      │      │      │      │     │               │     │     │     │     │     │     │
-//    ├─────┼──────┼──────┼──────┼──────┼─────┤               ├─────┼─────┼─────┼─────┼─────┼─────┤
-//    │     │ ES_@ │ ES_& │ ES_% │      │     │               │     │     │     │     │     │     │
-//    ├─────┼──────┼──────┼──────┼──────┼─────┤               ├─────┼─────┼─────┼─────┼─────┼─────┤
-//    │     │ ES_` │ ES_~ │ ES_\ │ ES_/ │     │               │     │     │     │     │     │     │
-//    ├─────┼──────┼──────┼──────┼──────┼─────┼─────┐   ┌─────┼─────┼─────┼─────┼─────┼─────┼─────┤
-//    │     │      │      │      │      │     │     │   │     │     │     │     │     │     │     │
-//    └─────┴──────┼──────┼──────┼──────┼─────┼─────┘   └─────┼─────┼─────┼─────┼─────┼─────┴─────┘
-//                 │      │      │      │     │               │     │     │     │     │
-//                 └──────┴──────┴──────┴─────┘               └─────┴─────┴─────┴─────┘
-  &trans   &trans         &trans         &trans             &trans         &trans                         &trans   &trans   &trans   &trans   &trans   &trans
-  &trans   &kp ES_AT      &kp ES_AMPS    &kp ES_PRCNT       &trans         &trans                         &trans   &trans   &trans   &trans   &trans   &trans
-  &trans   &kp ES_GRAVE   &kp ES_TILDE   &kp ES_BACKSLASH   &kp ES_SLASH   &trans                         &trans   &trans   &trans   &trans   &trans   &trans
-  &trans   &trans         &trans         &trans             &trans         &trans   &trans       &trans   &trans   &trans   &trans   &trans   &trans   &trans
-                          &trans         &trans             &trans         &trans                         &trans   &trans   &trans   &trans
+//    ┌─────┬──────────────────┬──────┬──────┬──────┬─────┐               ┌─────┬─────┬─────┬─────┬─────┬─────┐
+//    │     │                  │      │      │      │     │               │     │     │     │     │     │     │
+//    ├─────┼──────────────────┼──────┼──────┼──────┼─────┤               ├─────┼─────┼─────┼─────┼─────┼─────┤
+//    │     │       ES_@       │ ES_& │ ES_% │      │     │               │     │     │     │     │     │     │
+//    ├─────┼──────────────────┼──────┼──────┼──────┼─────┤               ├─────┼─────┼─────┼─────┼─────┼─────┤
+//    │     │ &single_backtick │ ES_~ │ ES_\ │ ES_/ │     │               │     │     │     │     │     │     │
+//    ├─────┼──────────────────┼──────┼──────┼──────┼─────┼─────┐   ┌─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+//    │     │                  │      │      │      │     │     │   │     │     │     │     │     │     │     │
+//    └─────┴──────────────────┼──────┼──────┼──────┼─────┼─────┘   └─────┼─────┼─────┼─────┼─────┼─────┴─────┘
+//                             │      │      │      │     │               │     │     │     │     │
+//                             └──────┴──────┴──────┴─────┘               └─────┴─────┴─────┴─────┘
+  &trans   &trans             &trans         &trans             &trans         &trans                         &trans   &trans   &trans   &trans   &trans   &trans
+  &trans   &kp ES_AT          &kp ES_AMPS    &kp ES_PRCNT       &trans         &trans                         &trans   &trans   &trans   &trans   &trans   &trans
+  &trans   &single_backtick   &kp ES_TILDE   &kp ES_BACKSLASH   &kp ES_SLASH   &trans                         &trans   &trans   &trans   &trans   &trans   &trans
+  &trans   &trans             &trans         &trans             &trans         &trans   &trans       &trans   &trans   &trans   &trans   &trans   &trans   &trans
+                              &trans         &trans             &trans         &trans                         &trans   &trans   &trans   &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
