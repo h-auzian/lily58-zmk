@@ -31,6 +31,16 @@ TODO:
 #define L_FUNC 7
 
 / {
+    behaviors {
+        mo_tog: behavior_mo_tog {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&mo>, <&tog>;
+        };
+    };
+
     macros {
         repeat_last_command: repeat_last_command {
             compatible = "zmk,behavior-macro";
@@ -43,15 +53,11 @@ TODO:
             #binding-cells = <0>;
             bindings = <&macro_tap &kp ES_GRAVE>, <&macro_tap &kp SPACE>;
         };
-    };
 
-    behaviors {
-        mo_tog: behavior_mo_tog {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "hold-preferred";
-            tapping-term-ms = <200>;
-            bindings = <&mo>, <&tog>;
+        remove_line: remove_line {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp HOME>, <&macro_press &kp LSHFT>, <&macro_tap &kp END>, <&macro_release &kp LSHFT>, <&macro_tap &kp DELETE>, <&macro_tap &kp DELETE>;
         };
     };
 
