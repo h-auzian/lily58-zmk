@@ -7,11 +7,13 @@
 /*
 TODO:
 
+- Numbers with alt (left hand).
+    - Or maybe just use software for this.
+        - Same with Control.
+        - Not the idea, though.
 - Modal movement layer.
     - Add deletion sub-layer
     - Add selection sub-layer
-- Consider using the accent key as a modifier.
-- Consider using the dash key as a modifier.
  */
 
 #include <behaviors.dtsi>
@@ -22,15 +24,14 @@ TODO:
 
 // Layer constants
 #define L_DEFAULT 0
-#define L_LEFT_THUMB 1
-#define L_LEFT_THUMB_STICKY 2
-#define L_CAPS 3
-#define L_N_TILDE 4
-#define L_RIGHT_SYMB 5
-#define L_NAV 6
-#define L_NUM 7
-#define L_FUNC 8
-#define L_NORMAL 9
+#define L_WORKFLOW 1
+#define L_WINDOW 2
+#define L_SYM 3
+#define L_SYM2 4
+#define L_NAV 5
+#define L_NUM 6
+#define L_FUNC 7
+#define L_NORMAL 8
 
 / {
     behaviors {
@@ -84,74 +85,27 @@ TODO:
         default_layer {
             display-name = "L_DEFAULT";
             bindings = <
-//    ┌───────────────┬───┬──────┬──────┬──────┬────────────────────────────────────────┐                                               ┌─────┬────────────────────┬────────────────────┬──────────┬─────────────────┬─────────────────────┐
-//    │     ES_|      │ 1 │  2   │  3   │  4   │                   5                    │                                               │  6  │         7          │         8          │    9     │        0        │        ES_'         │
-//    ├───────────────┼───┼──────┼──────┼──────┼────────────────────────────────────────┤                                               ├─────┼────────────────────┼────────────────────┼──────────┼─────────────────┼─────────────────────┤
-//    │      tab      │ Q │  W   │  E   │  R   │                   T                    │                                               │  Y  │         U          │         I          │    O     │        P        │      ES_ACUTE       │
-//    ├───────────────┼───┼──────┼──────┼──────┼────────────────────────────────────────┤                                               ├─────┼────────────────────┼────────────────────┼──────────┼─────────────────┼─────────────────────┤
-//    │ lt L_caps esc │ A │  S   │  D   │  F   │                   G                    │                                               │  H  │         J          │         K          │    L     │ lt L_N_~ ES_N_~ │ lt L_rght_SYMB ES__ │
-//    ├───────────────┼───┼──────┼──────┼──────┼────────────────────────────────────────┼────────────────────┐   ┌──────────────────────┼─────┼────────────────────┼────────────────────┼──────────┼─────────────────┼─────────────────────┤
-//    │     lsft      │ Z │  X   │  C   │  V   │                   B                    │ mo_tog L_NUM L_NUM │   │ mo_tog L_FUNC L_FUNC │  N  │         M          │         ,          │    .     │      ES_-       │        rsft         │
-//    └───────────────┴───┼──────┼──────┼──────┼────────────────────────────────────────┼────────────────────┘   └──────────────────────┼─────┼────────────────────┼────────────────────┼──────────┼─────────────────┴─────────────────────┘
-//                        │ lgui │ lalt │ lctl │ mo_sl L_left_THUMB L_left_THUMB_STICKY │                                               │ spc │ mo_tog L_NAV L_NAV │ mo_tog L_NUM L_NUM │ mo L_NAV │
-//                        └──────┴──────┴──────┴────────────────────────────────────────┘                                               └─────┴────────────────────┴────────────────────┴──────────┘
-  &kp ES_PIPE      &kp N1   &kp N2     &kp N3     &kp N4      &kp N5                                                                                      &kp N6      &kp N7                &kp N8                &kp N9      &kp N0                     &kp ES_SINGLE_QUOTE
-  &kp TAB          &kp Q    &kp W      &kp E      &kp R       &kp T                                                                                       &kp Y       &kp U                 &kp I                 &kp O       &kp P                      &kp ES_ACUTE
-  &lt L_CAPS ESC   &kp A    &kp S      &kp D      &kp F       &kp G                                                                                       &kp H       &kp J                 &kp K                 &kp L       &lt L_N_TILDE ES_N_TILDE   &lt L_RIGHT_SYMB ES_UNDERSCORE
-  &kp LSHFT        &kp Z    &kp X      &kp C      &kp V       &kp B                                     &mo_tog L_NUM L_NUM       &mo_tog L_FUNC L_FUNC   &kp N       &kp M                 &kp COMMA             &kp DOT     &kp ES_MINUS               &kp RSHFT
-                            &kp LGUI   &kp LALT   &kp LCTRL   &mo_sl L_LEFT_THUMB L_LEFT_THUMB_STICKY                                                     &kp SPACE   &mo_tog L_NAV L_NAV   &mo_tog L_NUM L_NUM   &mo L_NAV
+//    ┌───────────────────┬───┬──────┬──────┬──────┬───────────────────┐                                             ┌─────┬────────────────────┬────────────────────┬──────┬────────────────────┬────────────────┐
+//    │       ES_|        │ 1 │  2   │  3   │  4   │         5         │                                             │  6  │         7          │         8          │  9   │         0          │      ES_'      │
+//    ├───────────────────┼───┼──────┼──────┼──────┼───────────────────┤                                             ├─────┼────────────────────┼────────────────────┼──────┼────────────────────┼────────────────┤
+//    │        tab        │ Q │  W   │  E   │  R   │         T         │                                             │  Y  │         U          │         I          │  O   │         P          │    ES_ACUTE    │
+//    ├───────────────────┼───┼──────┼──────┼──────┼───────────────────┤                                             ├─────┼────────────────────┼────────────────────┼──────┼────────────────────┼────────────────┤
+//    │ lt L_WORKFLOW esc │ A │  S   │  D   │  F   │         G         │                                             │  H  │         J          │         K          │  L   │ lt L_WINDOW ES_N_~ │ lt L_SYM2 ES__ │
+//    ├───────────────────┼───┼──────┼──────┼──────┼───────────────────┼──────────────────┐   ┌──────────────────────┼─────┼────────────────────┼────────────────────┼──────┼────────────────────┼────────────────┤
+//    │       lsft        │ Z │  X   │  C   │  V   │         B         │ lt L_FUNC L_FUNC │   │ mo_tog L_FUNC L_FUNC │  N  │         M          │         ,          │  .   │        ES_-        │      rsft      │
+//    └───────────────────┴───┼──────┼──────┼──────┼───────────────────┼──────────────────┘   └──────────────────────┼─────┼────────────────────┼────────────────────┼──────┼────────────────────┴────────────────┘
+//                            │ lgui │ lalt │ lctl │ mo_sl L_SYM L_SYM │                                             │ spc │ mo_tog L_NAV L_NAV │ mo_tog L_NUM L_NUM │ lgui │
+//                            └──────┴──────┴──────┴───────────────────┘                                             └─────┴────────────────────┴────────────────────┴──────┘
+  &kp ES_PIPE          &kp N1   &kp N2     &kp N3     &kp N4      &kp N5                                                               &kp N6      &kp N7                &kp N8                &kp N9     &kp N0                    &kp ES_SINGLE_QUOTE
+  &kp TAB              &kp Q    &kp W      &kp E      &kp R       &kp T                                                                &kp Y       &kp U                 &kp I                 &kp O      &kp P                     &kp ES_ACUTE
+  &lt L_WORKFLOW ESC   &kp A    &kp S      &kp D      &kp F       &kp G                                                                &kp H       &kp J                 &kp K                 &kp L      &lt L_WINDOW ES_N_TILDE   &lt L_SYM2 ES_UNDERSCORE
+  &kp LSHFT            &kp Z    &kp X      &kp C      &kp V       &kp B                &lt L_FUNC L_FUNC       &mo_tog L_FUNC L_FUNC   &kp N       &kp M                 &kp COMMA             &kp DOT    &kp ES_MINUS              &kp RSHFT
+                                &kp LGUI   &kp LALT   &kp LCTRL   &mo_sl L_SYM L_SYM                                                   &kp SPACE   &mo_tog L_NAV L_NAV   &mo_tog L_NUM L_NUM   &kp LGUI
             >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
-        };
-
-        left_thumb_layer {
-            display-name = "L_LEFT_THUMB";
-            bindings = <
-//    ┌──────┬────────────┬────────────┬─────┬─────┬─────────┐               ┌─────────┬─────────┬──────┬─────────┬─────────┬──────┐
-//    │      │ lctl(ES_-) │ lctl(ES_+) │     │     │         │               │         │         │      │         │         │ pscr │
-//    ├──────┼────────────┼────────────┼─────┼─────┼─────────┤               ├─────────┼─────────┼──────┼─────────┼─────────┼──────┤
-//    │      │            │  lctl(W)   │     │     │ lctl(T) │               │ lctl(C) │         │  up  │ lctl(O) │ lctl(V) │ ES_+ │
-//    ├──────┼────────────┼────────────┼─────┼─────┼─────────┤               ├─────────┼─────────┼──────┼─────────┼─────────┼──────┤
-//    │ caps │  lalt(A)   │            │     │     │         │               │ lctl(X) │  left   │ down │  rght   │  ES_+   │ ES_* │
-//    ├──────┼────────────┼────────────┼─────┼─────┼─────────┼─────┐   ┌─────┼─────────┼─────────┼──────┼─────────┼─────────┼──────┤
-//    │      │            │            │     │     │         │     │   │     │         │ lctl(R) │ ES_< │  ES_>   │  ES_/   │      │
-//    └──────┴────────────┼────────────┼─────┼─────┼─────────┼─────┘   └─────┼─────────┼─────────┼──────┼─────────┼─────────┴──────┘
-//                        │            │     │     │         │               │   ent   │         │      │         │
-//                        └────────────┴─────┴─────┴─────────┘               └─────────┴─────────┴──────┴─────────┘
-  &trans     &kp LC(ES_MINUS)   &kp LC(ES_PLUS)   &trans   &trans   &trans                            &trans      &trans      &trans      &trans      &trans         &kp PSCRN
-  &trans     &trans             &kp LC(W)         &trans   &trans   &kp LC(T)                         &kp LC(C)   &trans      &kp UP      &kp LC(O)   &kp LC(V)      &kp ES_PLUS
-  &kp CAPS   &kp LA(A)          &trans            &trans   &trans   &trans                            &kp LC(X)   &kp LEFT    &kp DOWN    &kp RIGHT   &kp ES_PLUS    &kp ES_STAR
-  &trans     &trans             &trans            &trans   &trans   &trans      &trans       &trans   &trans      &kp LC(R)   &kp ES_LT   &kp ES_GT   &kp ES_SLASH   &trans
-                                &trans            &trans   &trans   &trans                            &kp ENTER   &trans      &trans      &trans
-           >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
-        };
-
-        left_thumb_sticky_layer {
-            display-name = "L_LEFT_THUMB_STICKY";
-            bindings = <
-//    ┌─────┬───────┬───────┬──────┬──────┬─────┐               ┌──────┬──────┬──────┬──────┬──────┬─────┐
-//    │     │       │       │      │      │     │               │      │      │      │      │      │     │
-//    ├─────┼───────┼───────┼──────┼──────┼─────┤               ├──────┼──────┼──────┼──────┼──────┼─────┤
-//    │     │       │       │      │      │     │               │ ES_= │ ES_[ │ ES_( │ ES_) │ ES_] │     │
-//    ├─────┼───────┼───────┼──────┼──────┼─────┤               ├──────┼──────┼──────┼──────┼──────┼─────┤
-//    │     │ ES_I! │ ES_I? │ ES_? │ ES_! │     │               │ ES_= │ ES_< │ ES_{ │ ES_} │ ES_> │     │
-//    ├─────┼───────┼───────┼──────┼──────┼─────┼─────┐   ┌─────┼──────┼──────┼──────┼──────┼──────┼─────┤
-//    │     │       │       │      │      │     │     │   │     │      │      │      │      │      │     │
-//    └─────┴───────┼───────┼──────┼──────┼─────┼─────┘   └─────┼──────┼──────┼──────┼──────┼──────┴─────┘
-//                  │       │      │      │     │               │      │      │      │      │
-//                  └───────┴──────┴──────┴─────┘               └──────┴──────┴──────┴──────┘
-  &trans   &trans         &trans          &trans         &trans        &trans                         &trans         &trans        &trans        &trans        &trans        &trans
-  &trans   &trans         &trans          &trans         &trans        &trans                         &kp ES_EQUAL   &kp ES_LBKT   &kp ES_LPAR   &kp ES_RPAR   &kp ES_RBKT   &trans
-  &trans   &kp ES_IEXCL   &kp ES_IQMARK   &kp ES_QMARK   &kp ES_EXCL   &trans                         &kp ES_EQUAL   &kp ES_LT     &kp ES_LBRC   &kp ES_RBRC   &kp ES_GT     &trans
-  &trans   &trans         &trans          &trans         &trans        &trans   &trans       &trans   &trans         &trans        &trans        &trans        &trans        &trans
-                          &trans          &trans         &trans        &trans                         &trans         &trans        &trans        &trans
-           >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
         capslock_layer {
-            display-name = "L_CAPS";
+            display-name = "L_WORKFLOW";
             bindings = <
 //    ┌─────┬─────────────────┬──────────┬───────────┬──────────────────────┬─────┐               ┌─────────┬───────────────┬───────────────┬───────────────┬────────────────────┬─────┐
 //    │     │                 │          │           │                      │     │               │         │               │               │               │                    │     │
@@ -170,11 +124,10 @@ TODO:
   &trans   &trans            &kp LA(F4)   &trans        &trans                 &trans   &trans       &trans   &trans      &kp LG(Q)       &trans          &trans          &trans                   &trans
                              &trans       &trans        &trans                 &trans                         &trans      &trans          &trans          &trans
             >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
         n_tilde_layer {
-            display-name = "L_N_TILDE";
+            display-name = "L_WINDOW";
             bindings = <
 //    ┌─────┬────────────┬──────────┬──────────┬──────────┬──────────┐               ┌────────────┬─────────┬─────────┬─────┬─────┬─────┐
 //    │     │            │          │          │          │          │               │            │         │         │     │     │     │
@@ -193,16 +146,37 @@ TODO:
   &trans   &trans            &kp LA(F4)   &kp LC(C)    &kp LC(V)    &trans       &trans       &trans   &trans              &trans          &trans      &trans       &trans   &trans
                              &trans       &trans       &trans       &trans                             &trans              &trans          &trans      &trans
            >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
-        right_symbols {
-            display-name = "L_RIGHT_SYMB";
+        main_symbols {
+            display-name = "L_SYM";
+            bindings = <
+//    ┌─────────┬──────────────────┬────────────┬───────┬──────┬─────┐               ┌─────┬──────┬──────┬─────┬──────┬──────┐
+//    │ lctl(0) │    lctl(ES_-)    │ lctl(ES_+) │       │      │     │               │     │ ES_( │ ES_) │     │      │ pscr │
+//    ├─────────┼──────────────────┼────────────┼───────┼──────┼─────┤               ├─────┼──────┼──────┼─────┼──────┼──────┤
+//    │         │       ES_@       │    ES_&    │ ES_I! │ ES_! │     │               │     │ ES_[ │ ES_] │     │      │ ES_+ │
+//    ├─────────┼──────────────────┼────────────┼───────┼──────┼─────┤               ├─────┼──────┼──────┼─────┼──────┼──────┤
+//    │  capsw  │ &single_backtick │    ES_~    │ ES_I? │ ES_? │     │               │     │ ES_{ │ ES_} │     │ ES_= │ ES_* │
+//    ├─────────┼──────────────────┼────────────┼───────┼──────┼─────┼─────┐   ┌─────┼─────┼──────┼──────┼─────┼──────┼──────┤
+//    │         │                  │            │       │      │     │     │   │     │     │ ES_< │ ES_> │     │ ES_/ │ ES_\ │
+//    └─────────┴──────────────────┼────────────┼───────┼──────┼─────┼─────┘   └─────┼─────┼──────┼──────┼─────┼──────┴──────┘
+//                                 │            │       │      │     │               │     │      │      │     │
+//                                 └────────────┴───────┴──────┴─────┘               └─────┴──────┴──────┴─────┘
+  &kp LC(N0)   &kp LC(ES_MINUS)   &kp LC(ES_PLUS)   &trans          &trans         &trans                         &trans   &kp ES_LPAR   &kp ES_RPAR   &trans   &trans         &kp PSCRN
+  &trans       &kp ES_AT          &kp ES_AMPS       &kp ES_IEXCL    &kp ES_EXCL    &trans                         &trans   &kp ES_LBKT   &kp ES_RBKT   &trans   &trans         &kp ES_PLUS
+  &caps_word   &single_backtick   &kp ES_TILDE      &kp ES_IQMARK   &kp ES_QMARK   &trans                         &trans   &kp ES_LBRC   &kp ES_RBRC   &trans   &kp ES_EQUAL   &kp ES_STAR
+  &trans       &trans             &trans            &trans          &trans         &trans   &trans       &trans   &trans   &kp ES_LT     &kp ES_GT     &trans   &kp ES_SLASH   &kp ES_BACKSLASH
+                                  &trans            &trans          &trans         &trans                         &trans   &trans        &trans        &trans
+           >;
+        };
+
+        secondary_symbols {
+            display-name = "L_SYM2";
             bindings = <
 //    ┌─────┬──────────────────┬──────┬──────┬──────┬─────┐               ┌─────┬─────┬─────┬─────┬─────┬─────┐
 //    │     │                  │      │      │      │     │               │     │     │     │     │     │     │
 //    ├─────┼──────────────────┼──────┼──────┼──────┼─────┤               ├─────┼─────┼─────┼─────┼─────┼─────┤
-//    │     │       ES_@       │ ES_& │ ES_% │      │     │               │     │     │     │     │     │     │
+//    │     │       ES_@       │ ES_& │ ES_% │ ES_# │     │               │     │     │     │     │     │     │
 //    ├─────┼──────────────────┼──────┼──────┼──────┼─────┤               ├─────┼─────┼─────┼─────┼─────┼─────┤
 //    │     │ &single_backtick │ ES_~ │ ES_\ │ ES_/ │     │               │     │     │     │     │     │     │
 //    ├─────┼──────────────────┼──────┼──────┼──────┼─────┼─────┐   ┌─────┼─────┼─────┼─────┼─────┼─────┼─────┤
@@ -211,58 +185,55 @@ TODO:
 //                             │      │      │      │     │               │     │     │     │     │
 //                             └──────┴──────┴──────┴─────┘               └─────┴─────┴─────┴─────┘
   &trans   &trans             &trans         &trans             &trans         &trans                         &trans   &trans   &trans   &trans   &trans   &trans
-  &trans   &kp ES_AT          &kp ES_AMPS    &kp ES_PRCNT       &trans         &trans                         &trans   &trans   &trans   &trans   &trans   &trans
+  &trans   &kp ES_AT          &kp ES_AMPS    &kp ES_PRCNT       &kp ES_HASH    &trans                         &trans   &trans   &trans   &trans   &trans   &trans
   &trans   &single_backtick   &kp ES_TILDE   &kp ES_BACKSLASH   &kp ES_SLASH   &trans                         &trans   &trans   &trans   &trans   &trans   &trans
   &trans   &trans             &trans         &trans             &trans         &trans   &trans       &trans   &trans   &trans   &trans   &trans   &trans   &trans
                               &trans         &trans             &trans         &trans                         &trans   &trans   &trans   &trans
             >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
         navigation {
             display-name = "L_NAV";
             bindings = <
-//    ┌─────────────┬─────┬────────────┬─────────┬─────┬────────────┐               ┌────────────┬──────┬──────┬──────┬────────────┬──────┐
-//    │             │     │            │         │     │            │               │            │      │      │      │            │      │
-//    ├─────────────┼─────┼────────────┼─────────┼─────┼────────────┤               ├────────────┼──────┼──────┼──────┼────────────┼──────┤
-//    │             │     │ lctl(rght) │         │     │            │               │            │ home │  up  │ end  │            │ pgup │
-//    ├─────────────┼─────┼────────────┼─────────┼─────┼────────────┤               ├────────────┼──────┼──────┼──────┼────────────┼──────┤
-//    │ to L_DEFAU< │     │            │  bspc   │     │            │               │ lctl(left) │ left │ down │ rght │ lctl(rght) │ pgdn │
-//    ├─────────────┼─────┼────────────┼─────────┼─────┼────────────┼─────┐   ┌─────┼────────────┼──────┼──────┼──────┼────────────┼──────┤
-//    │             │     │            │ kt lsft │     │ lctl(left) │     │   │     │            │      │      │      │            │      │
-//    └─────────────┴─────┼────────────┼─────────┼─────┼────────────┼─────┘   └─────┼────────────┼──────┼──────┼──────┼────────────┴──────┘
-//                        │            │         │     │            │               │    spc     │      │      │      │
-//                        └────────────┴─────────┴─────┴────────────┘               └────────────┴──────┴──────┴──────┘
-  &trans          &trans   &trans          &trans          &trans   &trans                               &trans         &trans     &trans     &trans      &trans          &trans
-  &trans          &trans   &kp LC(RIGHT)   &trans          &trans   &trans                               &trans         &kp HOME   &kp UP     &kp END     &trans          &kp PAGE_UP
-  &to L_DEFAULT   &trans   &trans          &kp BACKSPACE   &trans   &trans                               &kp LC(LEFT)   &kp LEFT   &kp DOWN   &kp RIGHT   &kp LC(RIGHT)   &kp PAGE_DOWN
-  &trans          &trans   &trans          &kt LSHFT       &trans   &kp LC(LEFT)   &trans       &trans   &trans         &trans     &trans     &trans      &trans          &trans
-                           &trans          &trans          &trans   &trans                               &kp SPACE      &trans     &trans     &trans
+//    ┌─────────────┬─────┬────────────┬─────────┬─────┬────────────┐               ┌──────┬────────────┬──────┬────────────┬─────┬──────┐
+//    │             │     │            │         │     │            │               │      │            │      │            │     │      │
+//    ├─────────────┼─────┼────────────┼─────────┼─────┼────────────┤               ├──────┼────────────┼──────┼────────────┼─────┼──────┤
+//    │             │     │ lctl(rght) │         │     │            │               │ pgup │    home    │  up  │    end     │     │ bspc │
+//    ├─────────────┼─────┼────────────┼─────────┼─────┼────────────┤               ├──────┼────────────┼──────┼────────────┼─────┼──────┤
+//    │ to L_DEFAU< │     │            │  bspc   │     │            │               │ pgdn │    left    │ down │    rght    │     │ ent  │
+//    ├─────────────┼─────┼────────────┼─────────┼─────┼────────────┼─────┐   ┌─────┼──────┼────────────┼──────┼────────────┼─────┼──────┤
+//    │             │     │            │ kt lsft │     │ lctl(left) │     │   │     │      │ lctl(left) │      │ lctl(rght) │     │      │
+//    └─────────────┴─────┼────────────┼─────────┼─────┼────────────┼─────┘   └─────┼──────┼────────────┼──────┼────────────┼─────┴──────┘
+//                        │            │         │     │            │               │ spc  │            │      │            │
+//                        └────────────┴─────────┴─────┴────────────┘               └──────┴────────────┴──────┴────────────┘
+  &trans          &trans   &trans          &trans          &trans   &trans                               &trans          &trans         &trans     &trans          &trans   &trans
+  &trans          &trans   &kp LC(RIGHT)   &trans          &trans   &trans                               &kp PAGE_UP     &kp HOME       &kp UP     &kp END         &trans   &kp BACKSPACE
+  &to L_DEFAULT   &trans   &trans          &kp BACKSPACE   &trans   &trans                               &kp PAGE_DOWN   &kp LEFT       &kp DOWN   &kp RIGHT       &trans   &kp ENTER
+  &trans          &trans   &trans          &kt LSHFT       &trans   &kp LC(LEFT)   &trans       &trans   &trans          &kp LC(LEFT)   &trans     &kp LC(RIGHT)   &trans   &trans
+                           &trans          &trans          &trans   &trans                               &kp SPACE       &trans         &trans     &trans
             >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
         numbers {
             display-name = "L_NUM";
             bindings = <
-//    ┌─────────────┬─────┬─────┬─────┬─────┬─────┐               ┌──────┬─────┬──────┬──────┬──────┬──────┐
-//    │             │     │     │     │     │     │               │      │     │ ES_/ │ ES_* │      │      │
-//    ├─────────────┼─────┼─────┼─────┼─────┼─────┤               ├──────┼─────┼──────┼──────┼──────┼──────┤
-//    │             │     │  7  │  8  │  9  │     │               │ bspc │  7  │  8   │  9   │      │ ES_- │
-//    ├─────────────┼─────┼─────┼─────┼─────┼─────┤               ├──────┼─────┼──────┼──────┼──────┼──────┤
-//    │ to L_DEFAU< │  0  │  4  │  5  │  6  │     │               │ bspc │  4  │  5   │  6   │ ES_: │ ES_+ │
-//    ├─────────────┼─────┼─────┼─────┼─────┼─────┼─────┐   ┌─────┼──────┼─────┼──────┼──────┼──────┼──────┤
-//    │             │     │  1  │  2  │  3  │     │     │   │     │ ES_: │  1  │  2   │  3   │  .   │ ES_/ │
-//    └─────────────┴─────┼─────┼─────┼─────┼─────┼─────┘   └─────┼──────┼─────┼──────┼──────┼──────┴──────┘
-//                        │     │     │     │ spc │               │  0   │  0  │      │      │
-//                        └─────┴─────┴─────┴─────┘               └──────┴─────┴──────┴──────┘
-  &trans          &trans   &trans   &trans   &trans   &trans                            &trans          &trans   &kp ES_SLASH   &kp ES_STAR   &trans         &trans
-  &trans          &trans   &kp N7   &kp N8   &kp N9   &trans                            &kp BACKSPACE   &kp N7   &kp N8         &kp N9        &trans         &kp ES_MINUS
-  &to L_DEFAULT   &kp N0   &kp N4   &kp N5   &kp N6   &trans                            &kp BACKSPACE   &kp N4   &kp N5         &kp N6        &kp ES_COLON   &kp ES_PLUS
-  &trans          &trans   &kp N1   &kp N2   &kp N3   &trans      &trans       &trans   &kp ES_COLON    &kp N1   &kp N2         &kp N3        &kp DOT        &kp ES_SLASH
-                           &trans   &trans   &trans   &kp SPACE                         &kp N0          &kp N0   &trans         &trans
+//    ┌─────────────┬─────┬─────┬─────┬─────┬─────┐               ┌──────┬─────┬─────┬─────┬──────┬──────┐
+//    │             │     │     │     │     │     │               │      │     │     │     │      │      │
+//    ├─────────────┼─────┼─────┼─────┼─────┼─────┤               ├──────┼─────┼─────┼─────┼──────┼──────┤
+//    │             │     │     │     │     │     │               │ bspc │  7  │  8  │  9  │      │ ES_+ │
+//    ├─────────────┼─────┼─────┼─────┼─────┼─────┤               ├──────┼─────┼─────┼─────┼──────┼──────┤
+//    │ to L_DEFAU< │     │     │     │     │     │               │ bspc │  4  │  5  │  6  │ ES_: │ ES_* │
+//    ├─────────────┼─────┼─────┼─────┼─────┼─────┼─────┐   ┌─────┼──────┼─────┼─────┼─────┼──────┼──────┤
+//    │             │     │     │     │     │     │     │   │     │      │  1  │  2  │  3  │ ES_- │ ES_/ │
+//    └─────────────┴─────┼─────┼─────┼─────┼─────┼─────┘   └─────┼──────┼─────┼─────┼─────┼──────┴──────┘
+//                        │     │     │     │ spc │               │  0   │     │     │     │
+//                        └─────┴─────┴─────┴─────┘               └──────┴─────┴─────┴─────┘
+  &trans          &trans   &trans   &trans   &trans   &trans                            &trans          &trans   &trans   &trans   &trans         &trans
+  &trans          &trans   &trans   &trans   &trans   &trans                            &kp BACKSPACE   &kp N7   &kp N8   &kp N9   &trans         &kp ES_PLUS
+  &to L_DEFAULT   &trans   &trans   &trans   &trans   &trans                            &kp BACKSPACE   &kp N4   &kp N5   &kp N6   &kp ES_COLON   &kp ES_STAR
+  &trans          &trans   &trans   &trans   &trans   &trans      &trans       &trans   &trans          &kp N1   &kp N2   &kp N3   &kp ES_MINUS   &kp ES_SLASH
+                           &trans   &trans   &trans   &kp SPACE                         &kp N0          &trans   &trans   &trans
             >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
         functions {
@@ -285,30 +256,28 @@ TODO:
   &trans          &kp C_MUTE   &kp C_PLAY_PAUSE   &trans       &trans   &trans   &to L_NORMAL       &trans   &trans         &trans         &trans         &trans         &trans         &trans
                                &trans             &trans       &trans   &trans                               &trans         &trans         &trans         &trans
             >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
         normal_layer {
             display-name = "L_NORMAL";
             bindings = <
-//    ┌───────────────┬───┬──────┬──────┬──────┬─────┐                               ┌─────┬─────┬─────┬─────┬─────────────────┬─────────────────────┐
-//    │     ES_|      │ 1 │  2   │  3   │  4   │  5  │                               │  6  │  7  │  8  │  9  │        0        │        ES_'         │
-//    ├───────────────┼───┼──────┼──────┼──────┼─────┤                               ├─────┼─────┼─────┼─────┼─────────────────┼─────────────────────┤
-//    │      tab      │ Q │  W   │  E   │  R   │  T  │                               │  Y  │  U  │  I  │  O  │        P        │      ES_ACUTE       │
-//    ├───────────────┼───┼──────┼──────┼──────┼─────┤                               ├─────┼─────┼─────┼─────┼─────────────────┼─────────────────────┤
-//    │ lt L_caps esc │ A │  S   │  D   │  F   │  G  │                               │  H  │  J  │  K  │  L  │ lt L_N_~ ES_N_~ │ lt L_rght_SYMB ES__ │
-//    ├───────────────┼───┼──────┼──────┼──────┼─────┼─────────────┐   ┌─────────────┼─────┼─────┼─────┼─────┼─────────────────┼─────────────────────┤
-//    │     lsft      │ Z │  X   │  C   │  V   │  B  │ to L_DEFAU< │   │ to L_DEFAU< │  N  │  M  │  ,  │  .  │      ES_-       │        rsft         │
-//    └───────────────┴───┼──────┼──────┼──────┼─────┼─────────────┘   └─────────────┼─────┼─────┼─────┼─────┼─────────────────┴─────────────────────┘
-//                        │ lgui │ lalt │ lctl │ spc │                               │ spc │     │     │     │
-//                        └──────┴──────┴──────┴─────┘                               └─────┴─────┴─────┴─────┘
-  &kp ES_PIPE      &kp N1   &kp N2     &kp N3     &kp N4      &kp N5                                          &kp N6      &kp N7   &kp N8      &kp N9    &kp N0                     &kp ES_SINGLE_QUOTE
-  &kp TAB          &kp Q    &kp W      &kp E      &kp R       &kp T                                           &kp Y       &kp U    &kp I       &kp O     &kp P                      &kp ES_ACUTE
-  &lt L_CAPS ESC   &kp A    &kp S      &kp D      &kp F       &kp G                                           &kp H       &kp J    &kp K       &kp L     &lt L_N_TILDE ES_N_TILDE   &lt L_RIGHT_SYMB ES_UNDERSCORE
-  &kp LSHFT        &kp Z    &kp X      &kp C      &kp V       &kp B       &to L_DEFAULT       &to L_DEFAULT   &kp N       &kp M    &kp COMMA   &kp DOT   &kp ES_MINUS               &kp RSHFT
-                            &kp LGUI   &kp LALT   &kp LCTRL   &kp SPACE                                       &kp SPACE   &trans   &trans      &trans
+//    ┌───────────────────┬───┬──────┬──────┬──────┬─────┐                               ┌─────┬─────┬─────┬─────┬────────────────────┬──────────┐
+//    │       ES_|        │ 1 │  2   │  3   │  4   │  5  │                               │  6  │  7  │  8  │  9  │         0          │   ES_'   │
+//    ├───────────────────┼───┼──────┼──────┼──────┼─────┤                               ├─────┼─────┼─────┼─────┼────────────────────┼──────────┤
+//    │        tab        │ Q │  W   │  E   │  R   │  T  │                               │  Y  │  U  │  I  │  O  │         P          │ ES_ACUTE │
+//    ├───────────────────┼───┼──────┼──────┼──────┼─────┤                               ├─────┼─────┼─────┼─────┼────────────────────┼──────────┤
+//    │ lt L_WORKFLOW esc │ A │  S   │  D   │  F   │  G  │                               │  H  │  J  │  K  │  L  │ lt L_WINDOW ES_N_~ │   ES__   │
+//    ├───────────────────┼───┼──────┼──────┼──────┼─────┼─────────────┐   ┌─────────────┼─────┼─────┼─────┼─────┼────────────────────┼──────────┤
+//    │       lsft        │ Z │  X   │  C   │  V   │  B  │ to L_DEFAU< │   │ to L_DEFAU< │  N  │  M  │  ,  │  .  │        ES_-        │   rsft   │
+//    └───────────────────┴───┼──────┼──────┼──────┼─────┼─────────────┘   └─────────────┼─────┼─────┼─────┼─────┼────────────────────┴──────────┘
+//                            │ lgui │ lalt │ lctl │ spc │                               │ spc │     │     │     │
+//                            └──────┴──────┴──────┴─────┘                               └─────┴─────┴─────┴─────┘
+  &kp ES_PIPE          &kp N1   &kp N2     &kp N3     &kp N4      &kp N5                                          &kp N6      &kp N7   &kp N8      &kp N9    &kp N0                    &kp ES_SINGLE_QUOTE
+  &kp TAB              &kp Q    &kp W      &kp E      &kp R       &kp T                                           &kp Y       &kp U    &kp I       &kp O     &kp P                     &kp ES_ACUTE
+  &lt L_WORKFLOW ESC   &kp A    &kp S      &kp D      &kp F       &kp G                                           &kp H       &kp J    &kp K       &kp L     &lt L_WINDOW ES_N_TILDE   &kp ES_UNDERSCORE
+  &kp LSHFT            &kp Z    &kp X      &kp C      &kp V       &kp B       &to L_DEFAULT       &to L_DEFAULT   &kp N       &kp M    &kp COMMA   &kp DOT   &kp ES_MINUS              &kp RSHFT
+                                &kp LGUI   &kp LALT   &kp LCTRL   &kp SPACE                                       &kp SPACE   &trans   &trans      &trans
             >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
         placeholder {
@@ -331,7 +300,6 @@ TODO:
   &trans   &trans   &trans   &trans   &trans   &trans   &trans       &trans   &trans   &trans   &trans   &trans   &trans   &trans
                     &trans   &trans   &trans   &trans                         &trans   &trans   &trans   &trans
             >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
     };
 };
