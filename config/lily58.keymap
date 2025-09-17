@@ -33,6 +33,10 @@ TODO:
 #define L_FUNC 7
 #define L_NORMAL 8
 
+&caps_word {
+    continue-list = <UNDERSCORE ES_UNDERSCORE MINUS ES_MINUS>;
+};
+
 / {
     behaviors {
         mo_tog: behavior_mo_tog {
@@ -85,22 +89,22 @@ TODO:
         default_layer {
             display-name = "L_DEFAULT";
             bindings = <
-//    ┌───────────────────┬───┬──────┬──────┬──────┬───────────────────┐                                             ┌─────┬────────────────────┬────────────────────┬──────┬────────────────────┬────────────────┐
-//    │       ES_|        │ 1 │  2   │  3   │  4   │         5         │                                             │  6  │         7          │         8          │  9   │         0          │      ES_'      │
-//    ├───────────────────┼───┼──────┼──────┼──────┼───────────────────┤                                             ├─────┼────────────────────┼────────────────────┼──────┼────────────────────┼────────────────┤
-//    │        tab        │ Q │  W   │  E   │  R   │         T         │                                             │  Y  │         U          │         I          │  O   │         P          │    ES_ACUTE    │
-//    ├───────────────────┼───┼──────┼──────┼──────┼───────────────────┤                                             ├─────┼────────────────────┼────────────────────┼──────┼────────────────────┼────────────────┤
-//    │ lt L_WORKFLOW esc │ A │  S   │  D   │  F   │         G         │                                             │  H  │         J          │         K          │  L   │ lt L_WINDOW ES_N_~ │ lt L_SYM2 ES__ │
-//    ├───────────────────┼───┼──────┼──────┼──────┼───────────────────┼──────────────────┐   ┌──────────────────────┼─────┼────────────────────┼────────────────────┼──────┼────────────────────┼────────────────┤
-//    │       lsft        │ Z │  X   │  C   │  V   │         B         │ lt L_FUNC L_FUNC │   │ mo_tog L_FUNC L_FUNC │  N  │         M          │         ,          │  .   │        ES_-        │      rsft      │
-//    └───────────────────┴───┼──────┼──────┼──────┼───────────────────┼──────────────────┘   └──────────────────────┼─────┼────────────────────┼────────────────────┼──────┼────────────────────┴────────────────┘
-//                            │ lgui │ lalt │ lctl │ mo_sl L_SYM L_SYM │                                             │ spc │ mo_tog L_NAV L_NAV │ mo_tog L_NUM L_NUM │ lgui │
-//                            └──────┴──────┴──────┴───────────────────┘                                             └─────┴────────────────────┴────────────────────┴──────┘
-  &kp ES_PIPE          &kp N1   &kp N2     &kp N3     &kp N4      &kp N5                                                               &kp N6      &kp N7                &kp N8                &kp N9     &kp N0                    &kp ES_SINGLE_QUOTE
-  &kp TAB              &kp Q    &kp W      &kp E      &kp R       &kp T                                                                &kp Y       &kp U                 &kp I                 &kp O      &kp P                     &kp ES_ACUTE
-  &lt L_WORKFLOW ESC   &kp A    &kp S      &kp D      &kp F       &kp G                                                                &kp H       &kp J                 &kp K                 &kp L      &lt L_WINDOW ES_N_TILDE   &lt L_SYM2 ES_UNDERSCORE
-  &kp LSHFT            &kp Z    &kp X      &kp C      &kp V       &kp B                &lt L_FUNC L_FUNC       &mo_tog L_FUNC L_FUNC   &kp N       &kp M                 &kp COMMA             &kp DOT    &kp ES_MINUS              &kp RSHFT
-                                &kp LGUI   &kp LALT   &kp LCTRL   &mo_sl L_SYM L_SYM                                                   &kp SPACE   &mo_tog L_NAV L_NAV   &mo_tog L_NUM L_NUM   &kp LGUI
+//    ┌───────────────────┬───┬──────┬──────┬──────┬───────────────────┐                                     ┌─────┬────────────────────┬────────────────────┬──────┬────────────────────┬────────────────┐
+//    │       ES_|        │ 1 │  2   │  3   │  4   │         5         │                                     │  6  │         7          │         8          │  9   │         0          │      ES_'      │
+//    ├───────────────────┼───┼──────┼──────┼──────┼───────────────────┤                                     ├─────┼────────────────────┼────────────────────┼──────┼────────────────────┼────────────────┤
+//    │        tab        │ Q │  W   │  E   │  R   │         T         │                                     │  Y  │         U          │         I          │  O   │         P          │    ES_ACUTE    │
+//    ├───────────────────┼───┼──────┼──────┼──────┼───────────────────┤                                     ├─────┼────────────────────┼────────────────────┼──────┼────────────────────┼────────────────┤
+//    │ lt L_WORKFLOW esc │ A │  S   │  D   │  F   │         G         │                                     │  H  │         J          │         K          │  L   │ lt L_WINDOW ES_N_~ │ lt L_SYM2 ES__ │
+//    ├───────────────────┼───┼──────┼──────┼──────┼───────────────────┼──────────┐   ┌──────────────────────┼─────┼────────────────────┼────────────────────┼──────┼────────────────────┼────────────────┤
+//    │       lsft        │ Z │  X   │  C   │  V   │         B         │ mo L_NUM │   │ mo_tog L_FUNC L_FUNC │  N  │         M          │         ,          │  .   │        ES_-        │      rsft      │
+//    └───────────────────┴───┼──────┼──────┼──────┼───────────────────┼──────────┘   └──────────────────────┼─────┼────────────────────┼────────────────────┼──────┼────────────────────┴────────────────┘
+//                            │ lgui │ lalt │ lctl │ mo_sl L_SYM L_SYM │                                     │ spc │ mo_tog L_NAV L_NAV │ mo_tog L_NUM L_NUM │ lgui │
+//                            └──────┴──────┴──────┴───────────────────┘                                     └─────┴────────────────────┴────────────────────┴──────┘
+  &kp ES_PIPE          &kp N1   &kp N2     &kp N3     &kp N4      &kp N5                                                       &kp N6      &kp N7                &kp N8                &kp N9     &kp N0                    &kp ES_SINGLE_QUOTE
+  &kp TAB              &kp Q    &kp W      &kp E      &kp R       &kp T                                                        &kp Y       &kp U                 &kp I                 &kp O      &kp P                     &kp ES_ACUTE
+  &lt L_WORKFLOW ESC   &kp A    &kp S      &kp D      &kp F       &kp G                                                        &kp H       &kp J                 &kp K                 &kp L      &lt L_WINDOW ES_N_TILDE   &lt L_SYM2 ES_UNDERSCORE
+  &kp LSHFT            &kp Z    &kp X      &kp C      &kp V       &kp B                &mo L_NUM       &mo_tog L_FUNC L_FUNC   &kp N       &kp M                 &kp COMMA             &kp DOT    &kp ES_MINUS              &kp RSHFT
+                                &kp LGUI   &kp LALT   &kp LCTRL   &mo_sl L_SYM L_SYM                                           &kp SPACE   &mo_tog L_NAV L_NAV   &mo_tog L_NUM L_NUM   &kp LGUI
             >;
         };
 
@@ -174,7 +178,7 @@ TODO:
             display-name = "L_SYM2";
             bindings = <
 //    ┌─────┬──────────────────┬──────┬──────┬──────┬─────┐               ┌─────┬─────┬─────┬─────┬─────┬─────┐
-//    │     │                  │      │      │      │     │               │     │     │     │     │     │     │
+//    │     │                  │  f2  │      │      │     │               │     │     │     │     │     │     │
 //    ├─────┼──────────────────┼──────┼──────┼──────┼─────┤               ├─────┼─────┼─────┼─────┼─────┼─────┤
 //    │     │       ES_@       │ ES_& │ ES_% │ ES_# │     │               │     │     │     │     │     │     │
 //    ├─────┼──────────────────┼──────┼──────┼──────┼─────┤               ├─────┼─────┼─────┼─────┼─────┼─────┤
@@ -184,7 +188,7 @@ TODO:
 //    └─────┴──────────────────┼──────┼──────┼──────┼─────┼─────┘   └─────┼─────┼─────┼─────┼─────┼─────┴─────┘
 //                             │      │      │      │     │               │     │     │     │     │
 //                             └──────┴──────┴──────┴─────┘               └─────┴─────┴─────┴─────┘
-  &trans   &trans             &trans         &trans             &trans         &trans                         &trans   &trans   &trans   &trans   &trans   &trans
+  &trans   &trans             &kp F2         &trans             &trans         &trans                         &trans   &trans   &trans   &trans   &trans   &trans
   &trans   &kp ES_AT          &kp ES_AMPS    &kp ES_PRCNT       &kp ES_HASH    &trans                         &trans   &trans   &trans   &trans   &trans   &trans
   &trans   &single_backtick   &kp ES_TILDE   &kp ES_BACKSLASH   &kp ES_SLASH   &trans                         &trans   &trans   &trans   &trans   &trans   &trans
   &trans   &trans             &trans         &trans             &trans         &trans   &trans       &trans   &trans   &trans   &trans   &trans   &trans   &trans
