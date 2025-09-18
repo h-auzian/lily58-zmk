@@ -34,7 +34,7 @@ TODO:
 #define L_NORMAL 8
 
 &caps_word {
-    continue-list = <UNDERSCORE ES_UNDERSCORE MINUS ES_MINUS>;
+    continue-list = <UNDERSCORE ES_UNDERSCORE MINUS ES_MINUS QMARK>;
 };
 
 / {
@@ -155,22 +155,22 @@ TODO:
         main_symbols {
             display-name = "L_SYM";
             bindings = <
-//    ┌─────────┬──────────────────┬────────────┬───────┬──────┬─────┐               ┌─────┬──────┬──────┬─────┬──────┬──────┐
-//    │ lctl(0) │    lctl(ES_-)    │ lctl(ES_+) │       │      │     │               │     │ ES_( │ ES_) │     │      │ pscr │
-//    ├─────────┼──────────────────┼────────────┼───────┼──────┼─────┤               ├─────┼──────┼──────┼─────┼──────┼──────┤
-//    │         │       ES_@       │    ES_&    │ ES_I! │ ES_! │     │               │     │ ES_[ │ ES_] │     │      │ ES_+ │
-//    ├─────────┼──────────────────┼────────────┼───────┼──────┼─────┤               ├─────┼──────┼──────┼─────┼──────┼──────┤
-//    │  capsw  │ &single_backtick │    ES_~    │ ES_I? │ ES_? │     │               │     │ ES_{ │ ES_} │     │ ES_= │ ES_* │
-//    ├─────────┼──────────────────┼────────────┼───────┼──────┼─────┼─────┐   ┌─────┼─────┼──────┼──────┼─────┼──────┼──────┤
-//    │         │                  │            │       │      │     │     │   │     │     │ ES_< │ ES_> │     │ ES_/ │ ES_\ │
-//    └─────────┴──────────────────┼────────────┼───────┼──────┼─────┼─────┘   └─────┼─────┼──────┼──────┼─────┼──────┴──────┘
-//                                 │            │       │      │     │               │     │      │      │     │
-//                                 └────────────┴───────┴──────┴─────┘               └─────┴──────┴──────┴─────┘
-  &kp LC(N0)   &kp LC(ES_MINUS)   &kp LC(ES_PLUS)   &trans          &trans         &trans                         &trans   &kp ES_LPAR   &kp ES_RPAR   &trans   &trans         &kp PSCRN
-  &trans       &kp ES_AT          &kp ES_AMPS       &kp ES_IEXCL    &kp ES_EXCL    &trans                         &trans   &kp ES_LBKT   &kp ES_RBKT   &trans   &trans         &kp ES_PLUS
-  &caps_word   &single_backtick   &kp ES_TILDE      &kp ES_IQMARK   &kp ES_QMARK   &trans                         &trans   &kp ES_LBRC   &kp ES_RBRC   &trans   &kp ES_EQUAL   &kp ES_STAR
-  &trans       &trans             &trans            &trans          &trans         &trans   &trans       &trans   &trans   &kp ES_LT     &kp ES_GT     &trans   &kp ES_SLASH   &kp ES_BACKSLASH
-                                  &trans            &trans          &trans         &trans                         &trans   &trans        &trans        &trans
+//    ┌─────────┬────────────┬────────────┬─────┬─────────┬─────────┐               ┌───────┬──────┬──────┬──────┬──────┬──────┐
+//    │ lctl(0) │ lctl(ES_-) │ lctl(ES_+) │     │         │         │               │       │ ES_( │ ES_) │      │      │ pscr │
+//    ├─────────┼────────────┼────────────┼─────┼─────────┼─────────┤               ├───────┼──────┼──────┼──────┼──────┼──────┤
+//    │         │            │     f2     │     │         │         │               │ ES_I? │ ES_[ │ ES_] │ ES_? │ ES_& │ ES_+ │
+//    ├─────────┼────────────┼────────────┼─────┼─────────┼─────────┤               ├───────┼──────┼──────┼──────┼──────┼──────┤
+//    │  capsw  │  lctl(T)   │  lctl(S)   │     │ lctl(C) │ lctl(V) │               │ ES_I! │ ES_{ │ ES_} │ ES_! │ ES_= │ ES_* │
+//    ├─────────┼────────────┼────────────┼─────┼─────────┼─────────┼─────┐   ┌─────┼───────┼──────┼──────┼──────┼──────┼──────┤
+//    │         │            │            │     │ lctl(X) │         │     │   │     │       │ ES_< │ ES_> │      │ ES_/ │ ES_\ │
+//    └─────────┴────────────┼────────────┼─────┼─────────┼─────────┼─────┘   └─────┼───────┼──────┼──────┼──────┼──────┴──────┘
+//                           │            │     │         │         │               │       │      │      │      │
+//                           └────────────┴─────┴─────────┴─────────┘               └───────┴──────┴──────┴──────┘
+  &kp LC(N0)   &kp LC(ES_MINUS)   &kp LC(ES_PLUS)   &trans   &trans      &trans                            &trans          &kp ES_LPAR   &kp ES_RPAR   &trans         &trans         &kp PSCRN
+  &trans       &trans             &kp F2            &trans   &trans      &trans                            &kp ES_IQMARK   &kp ES_LBKT   &kp ES_RBKT   &kp ES_QMARK   &kp ES_AMPS    &kp ES_PLUS
+  &caps_word   &kp LC(T)          &kp LC(S)         &trans   &kp LC(C)   &kp LC(V)                         &kp ES_IEXCL    &kp ES_LBRC   &kp ES_RBRC   &kp ES_EXCL    &kp ES_EQUAL   &kp ES_STAR
+  &trans       &trans             &trans            &trans   &kp LC(X)   &trans      &trans       &trans   &trans          &kp ES_LT     &kp ES_GT     &trans         &kp ES_SLASH   &kp ES_BACKSLASH
+                                  &trans            &trans   &trans      &trans                            &trans          &trans        &trans        &trans
            >;
         };
 
