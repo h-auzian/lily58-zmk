@@ -108,7 +108,7 @@ TODO:
             >;
         };
 
-        capslock_layer {
+        workflow_layer {
             display-name = "L_WORKFLOW";
             bindings = <
 //    ┌─────┬─────────────────┬──────────┬───────────┬──────────────────────┬─────┐               ┌─────────┬───────────────┬───────────────┬───────────────┬────────────────────┬─────┐
@@ -130,7 +130,7 @@ TODO:
             >;
         };
 
-        n_tilde_layer {
+        window_tilde_layer {
             display-name = "L_WINDOW";
             bindings = <
 //    ┌─────┬────────────┬──────────┬──────────┬──────────┬──────────┐               ┌────────────┬─────────┬─────────┬─────┬─────┬─────┐
@@ -152,29 +152,29 @@ TODO:
            >;
         };
 
-        main_symbols {
+        symbols_layer {
             display-name = "L_SYM";
             bindings = <
-//    ┌─────────┬────────────┬────────────┬─────┬─────────┬─────────┐               ┌───────┬──────┬──────┬──────┬──────┬──────┐
-//    │ lctl(0) │ lctl(ES_-) │ lctl(ES_+) │     │         │         │               │       │ ES_( │ ES_) │      │      │ pscr │
-//    ├─────────┼────────────┼────────────┼─────┼─────────┼─────────┤               ├───────┼──────┼──────┼──────┼──────┼──────┤
-//    │         │            │     f2     │     │         │         │               │ ES_I? │ ES_[ │ ES_] │ ES_? │ ES_& │ ES_+ │
-//    ├─────────┼────────────┼────────────┼─────┼─────────┼─────────┤               ├───────┼──────┼──────┼──────┼──────┼──────┤
-//    │  capsw  │  lctl(T)   │  lctl(S)   │     │ lctl(C) │ lctl(V) │               │ ES_I! │ ES_{ │ ES_} │ ES_! │ ES_= │ ES_* │
-//    ├─────────┼────────────┼────────────┼─────┼─────────┼─────────┼─────┐   ┌─────┼───────┼──────┼──────┼──────┼──────┼──────┤
-//    │         │            │            │     │ lctl(X) │         │     │   │     │       │ ES_< │ ES_> │      │ ES_/ │ ES_\ │
-//    └─────────┴────────────┼────────────┼─────┼─────────┼─────────┼─────┘   └─────┼───────┼──────┼──────┼──────┼──────┴──────┘
-//                           │            │     │         │         │               │       │      │      │      │
-//                           └────────────┴─────┴─────────┴─────────┘               └───────┴──────┴──────┴──────┘
-  &kp LC(N0)   &kp LC(ES_MINUS)   &kp LC(ES_PLUS)   &trans   &trans      &trans                            &trans          &kp ES_LPAR   &kp ES_RPAR   &trans         &trans         &kp PSCRN
-  &trans       &trans             &kp F2            &trans   &trans      &trans                            &kp ES_IQMARK   &kp ES_LBKT   &kp ES_RBKT   &kp ES_QMARK   &kp ES_AMPS    &kp ES_PLUS
-  &caps_word   &kp LC(T)          &kp LC(S)         &trans   &kp LC(C)   &kp LC(V)                         &kp ES_IEXCL    &kp ES_LBRC   &kp ES_RBRC   &kp ES_EXCL    &kp ES_EQUAL   &kp ES_STAR
-  &trans       &trans             &trans            &trans   &kp LC(X)   &trans      &trans       &trans   &trans          &kp ES_LT     &kp ES_GT     &trans         &kp ES_SLASH   &kp ES_BACKSLASH
-                                  &trans            &trans   &trans      &trans                            &trans          &trans        &trans        &trans
+//    ┌─────────┬────────────┬────────────┬──────┬─────────┬─────────┐               ┌───────┬──────┬──────┬──────┬──────┬──────┐
+//    │ lctl(0) │ lctl(ES_-) │ lctl(ES_+) │      │         │         │               │  f12  │      │      │      │      │ pscr │
+//    ├─────────┼────────────┼────────────┼──────┼─────────┼─────────┤               ├───────┼──────┼──────┼──────┼──────┼──────┤
+//    │         │  lalt(f4)  │     f2     │ ES_< │  ES_>   │         │               │ ES_I? │ ES_[ │ ES_] │ ES_? │ ES_& │ ES_+ │
+//    ├─────────┼────────────┼────────────┼──────┼─────────┼─────────┤               ├───────┼──────┼──────┼──────┼──────┼──────┤
+//    │  capsw  │  lctl(T)   │  lctl(S)   │      │ lctl(C) │ lctl(V) │               │ ES_I! │ ES_( │ ES_) │ ES_! │ ES_= │ ES_* │
+//    ├─────────┼────────────┼────────────┼──────┼─────────┼─────────┼─────┐   ┌─────┼───────┼──────┼──────┼──────┼──────┼──────┤
+//    │         │            │            │      │ lctl(X) │         │     │   │     │ ES_<  │ ES_{ │ ES_} │ ES_> │ ES_/ │ ES_\ │
+//    └─────────┴────────────┼────────────┼──────┼─────────┼─────────┼─────┘   └─────┼───────┼──────┼──────┼──────┼──────┴──────┘
+//                           │            │      │         │         │               │       │      │      │      │
+//                           └────────────┴──────┴─────────┴─────────┘               └───────┴──────┴──────┴──────┘
+  &kp LC(N0)   &kp LC(ES_MINUS)   &kp LC(ES_PLUS)   &trans      &trans      &trans                            &kp F12         &trans        &trans        &trans         &trans         &kp PSCRN
+  &trans       &kp LA(F4)         &kp F2            &kp ES_LT   &kp ES_GT   &trans                            &kp ES_IQMARK   &kp ES_LBKT   &kp ES_RBKT   &kp ES_QMARK   &kp ES_AMPS    &kp ES_PLUS
+  &caps_word   &kp LC(T)          &kp LC(S)         &trans      &kp LC(C)   &kp LC(V)                         &kp ES_IEXCL    &kp ES_LPAR   &kp ES_RPAR   &kp ES_EXCL    &kp ES_EQUAL   &kp ES_STAR
+  &trans       &trans             &trans            &trans      &kp LC(X)   &trans      &trans       &trans   &kp ES_LT       &kp ES_LBRC   &kp ES_RBRC   &kp ES_GT      &kp ES_SLASH   &kp ES_BACKSLASH
+                                  &trans            &trans      &trans      &trans                            &trans          &trans        &trans        &trans
            >;
         };
 
-        secondary_symbols {
+        secondary_symbols_layer {
             display-name = "L_SYM2";
             bindings = <
 //    ┌─────┬──────────────────┬──────┬──────┬──────┬─────┐               ┌─────┬─────┬─────┬─────┬─────┬─────┐
@@ -196,7 +196,7 @@ TODO:
             >;
         };
 
-        navigation {
+        navigation_layer {
             display-name = "L_NAV";
             bindings = <
 //    ┌─────────────┬─────┬────────────┬─────────┬─────┬────────────┐               ┌──────┬────────────┬──────┬────────────┬─────┬──────┐
@@ -208,17 +208,17 @@ TODO:
 //    ├─────────────┼─────┼────────────┼─────────┼─────┼────────────┼─────┐   ┌─────┼──────┼────────────┼──────┼────────────┼─────┼──────┤
 //    │             │     │            │ kt lsft │     │ lctl(left) │     │   │     │      │ lctl(left) │      │ lctl(rght) │     │      │
 //    └─────────────┴─────┼────────────┼─────────┼─────┼────────────┼─────┘   └─────┼──────┼────────────┼──────┼────────────┼─────┴──────┘
-//                        │            │         │     │            │               │ spc  │            │      │            │
+//                        │            │         │     │    ent     │               │ spc  │            │      │            │
 //                        └────────────┴─────────┴─────┴────────────┘               └──────┴────────────┴──────┴────────────┘
   &trans          &trans   &trans          &trans          &trans   &trans                               &trans          &trans         &trans     &trans          &trans   &trans
   &trans          &trans   &kp LC(RIGHT)   &trans          &trans   &trans                               &kp PAGE_UP     &kp HOME       &kp UP     &kp END         &trans   &kp BACKSPACE
   &to L_DEFAULT   &trans   &trans          &kp BACKSPACE   &trans   &trans                               &kp PAGE_DOWN   &kp LEFT       &kp DOWN   &kp RIGHT       &trans   &kp ENTER
   &trans          &trans   &trans          &kt LSHFT       &trans   &kp LC(LEFT)   &trans       &trans   &trans          &kp LC(LEFT)   &trans     &kp LC(RIGHT)   &trans   &trans
-                           &trans          &trans          &trans   &trans                               &kp SPACE       &trans         &trans     &trans
+                           &trans          &trans          &trans   &kp ENTER                            &kp SPACE       &trans         &trans     &trans
             >;
         };
 
-        numbers {
+        numbers_layer {
             display-name = "L_NUM";
             bindings = <
 //    ┌─────────────┬─────┬─────┬─────┬─────┬─────┐               ┌──────┬─────┬─────┬─────┬──────┬──────┐
@@ -240,7 +240,7 @@ TODO:
             >;
         };
 
-        functions {
+        functions_layer {
             display-name = "L_FUNC";
             bindings = <
 //    ┌─────────────┬──────┬──────┬──────┬─────┬─────┐                       ┌──────────┬──────────┬──────────┬──────────┬──────────┬────────┐
