@@ -7,6 +7,8 @@
 /*
 TODO:
 
+- Re-Consider replacing single quote with plus in default layer.
+
 - Replace Alt+num to move between desktops. Use Win+num instead.
     - This is to avoid false positives of "alt" in applications while switching on both Win and Linux.
     - keyd: replace keybinds for Capslock layer.
@@ -95,7 +97,7 @@ TODO:
             display-name = "L_DEFAULT";
             bindings = <
 //    ┌───────────────────┬───┬──────┬──────┬──────┬───────────────────┐                                     ┌─────┬────────────────────┬────────────────────┬──────┬────────────────────┬────────────────┐
-//    │       ES_|        │ 1 │  2   │  3   │  4   │         5         │                                     │  6  │         7          │         8          │  9   │         0          │      ES_+      │
+//    │       ES_|        │ 1 │  2   │  3   │  4   │         5         │                                     │  6  │         7          │         8          │  9   │         0          │      ES_'      │
 //    ├───────────────────┼───┼──────┼──────┼──────┼───────────────────┤                                     ├─────┼────────────────────┼────────────────────┼──────┼────────────────────┼────────────────┤
 //    │        tab        │ Q │  W   │  E   │  R   │         T         │                                     │  Y  │         U          │         I          │  O   │         P          │    ES_ACUTE    │
 //    ├───────────────────┼───┼──────┼──────┼──────┼───────────────────┤                                     ├─────┼────────────────────┼────────────────────┼──────┼────────────────────┼────────────────┤
@@ -105,7 +107,7 @@ TODO:
 //    └───────────────────┴───┼──────┼──────┼──────┼───────────────────┼──────────┘   └──────────────────────┼─────┼────────────────────┼────────────────────┼──────┼────────────────────┴────────────────┘
 //                            │ lgui │ lalt │ lctl │ mo_sl L_SYM L_SYM │                                     │ spc │ mo_tog L_NAV L_NAV │ mo_tog L_NUM L_NUM │ lgui │
 //                            └──────┴──────┴──────┴───────────────────┘                                     └─────┴────────────────────┴────────────────────┴──────┘
-  &kp ES_PIPE          &kp N1   &kp N2     &kp N3     &kp N4      &kp N5                                                       &kp N6      &kp N7                &kp N8                &kp N9     &kp N0                    &kp ES_PLUS
+  &kp ES_PIPE          &kp N1   &kp N2     &kp N3     &kp N4      &kp N5                                                       &kp N6      &kp N7                &kp N8                &kp N9     &kp N0                    &kp ES_SQT
   &kp TAB              &kp Q    &kp W      &kp E      &kp R       &kp T                                                        &kp Y       &kp U                 &kp I                 &kp O      &kp P                     &kp ES_ACUTE
   &lt L_WORKFLOW ESC   &kp A    &kp S      &kp D      &kp F       &kp G                                                        &kp H       &kp J                 &kp K                 &kp L      &lt L_WINDOW ES_N_TILDE   &lt L_SYM2 ES_UNDERSCORE
   &kp LSHFT            &kp Z    &kp X      &kp C      &kp V       &kp B                &mo L_NUM       &mo_tog L_FUNC L_FUNC   &kp N       &kp M                 &kp COMMA             &kp DOT    &kp ES_MINUS              &kp RSHFT
@@ -116,22 +118,22 @@ TODO:
         workflow_layer {
             display-name = "L_WORKFLOW";
             bindings = <
-//    ┌─────┬─────────────────┬──────────┬───────────┬──────────────────────┬─────┐               ┌──────────┬───────────────┬───────────────┬───────────────┬────────────────────┬─────┐
-//    │     │                 │          │           │                      │     │               │          │               │               │               │                    │     │
-//    ├─────┼─────────────────┼──────────┼───────────┼──────────────────────┼─────┤               ├──────────┼───────────────┼───────────────┼───────────────┼────────────────────┼─────┤
-//    │     │ lctl(lsft(tab)) │ lctl(W)  │ lctl(tab) │ &repeat_last_command │     │               │          │ lalt(lsft(U)) │ lalt(lsft(I)) │ lalt(lsft(O)) │   lalt(lsft(P))    │     │
-//    ├─────┼─────────────────┼──────────┼───────────┼──────────────────────┼─────┤               ├──────────┼───────────────┼───────────────┼───────────────┼────────────────────┼─────┤
-//    │     │                 │          │  lctl(L)  │    lalt(lsft(F))     │     │               │ lalt(F)  │ lalt(lsft(J)) │ lalt(lsft(K)) │ lalt(lsft(L)) │ lalt(lsft(ES_N_~)) │     │
-//    ├─────┼─────────────────┼──────────┼───────────┼──────────────────────┼─────┼─────┐   ┌─────┼──────────┼───────────────┼───────────────┼───────────────┼────────────────────┼─────┤
-//    │     │                 │ lalt(f4) │           │                      │     │     │   │     │          │    lgui(Q)    │               │               │                    │     │
-//    └─────┴─────────────────┼──────────┼───────────┼──────────────────────┼─────┼─────┘   └─────┼──────────┼───────────────┼───────────────┼───────────────┼────────────────────┴─────┘
-//                            │          │           │                      │     │               │ lalt(f4) │               │               │               │
-//                            └──────────┴───────────┴──────────────────────┴─────┘               └──────────┴───────────────┴───────────────┴───────────────┘
-  &trans   &trans            &trans       &trans        &trans                 &trans                         &trans       &trans          &trans          &trans          &trans                   &trans
-  &trans   &kp LC(LS(TAB))   &kp LC(W)    &kp LC(TAB)   &repeat_last_command   &trans                         &trans       &kp LA(LS(U))   &kp LA(LS(I))   &kp LA(LS(O))   &kp LA(LS(P))            &trans
-  &trans   &trans            &trans       &kp LC(L)     &kp LA(LS(F))          &trans                         &kp LA(F)    &kp LA(LS(J))   &kp LA(LS(K))   &kp LA(LS(L))   &kp LA(LS(ES_N_TILDE))   &trans
-  &trans   &trans            &kp LA(F4)   &trans        &trans                 &trans   &trans       &trans   &trans       &kp LG(Q)       &trans          &trans          &trans                   &trans
-                             &trans       &trans        &trans                 &trans                         &kp LA(F4)   &trans          &trans          &trans
+//    ┌─────┬─────────────────┬─────────┬───────────┬──────────────────────┬─────┐               ┌─────────┬───────────────┬───────────────┬───────────────┬────────────────────┬─────┐
+//    │     │                 │         │           │                      │     │               │         │               │               │               │                    │     │
+//    ├─────┼─────────────────┼─────────┼───────────┼──────────────────────┼─────┤               ├─────────┼───────────────┼───────────────┼───────────────┼────────────────────┼─────┤
+//    │     │ lctl(lsft(tab)) │ lctl(W) │ lctl(tab) │ &repeat_last_command │     │               │         │ lalt(lsft(U)) │ lalt(lsft(I)) │ lalt(lsft(O)) │   lalt(lsft(P))    │     │
+//    ├─────┼─────────────────┼─────────┼───────────┼──────────────────────┼─────┤               ├─────────┼───────────────┼───────────────┼───────────────┼────────────────────┼─────┤
+//    │     │                 │         │  lctl(L)  │    lalt(lsft(F))     │     │               │ lalt(F) │ lalt(lsft(J)) │ lalt(lsft(K)) │ lalt(lsft(L)) │ lalt(lsft(ES_N_~)) │     │
+//    ├─────┼─────────────────┼─────────┼───────────┼──────────────────────┼─────┼─────┐   ┌─────┼─────────┼───────────────┼───────────────┼───────────────┼────────────────────┼─────┤
+//    │     │                 │         │           │                      │     │     │   │     │         │    lgui(Q)    │               │               │                    │     │
+//    └─────┴─────────────────┼─────────┼───────────┼──────────────────────┼─────┼─────┘   └─────┼─────────┼───────────────┼───────────────┼───────────────┼────────────────────┴─────┘
+//                            │         │           │                      │     │               │         │               │               │               │
+//                            └─────────┴───────────┴──────────────────────┴─────┘               └─────────┴───────────────┴───────────────┴───────────────┘
+  &trans   &trans            &trans      &trans        &trans                 &trans                         &trans      &trans          &trans          &trans          &trans                   &trans
+  &trans   &kp LC(LS(TAB))   &kp LC(W)   &kp LC(TAB)   &repeat_last_command   &trans                         &trans      &kp LA(LS(U))   &kp LA(LS(I))   &kp LA(LS(O))   &kp LA(LS(P))            &trans
+  &trans   &trans            &trans      &kp LC(L)     &kp LA(LS(F))          &trans                         &kp LA(F)   &kp LA(LS(J))   &kp LA(LS(K))   &kp LA(LS(L))   &kp LA(LS(ES_N_TILDE))   &trans
+  &trans   &trans            &trans      &trans        &trans                 &trans   &trans       &trans   &trans      &kp LG(Q)       &trans          &trans          &trans                   &trans
+                             &trans      &trans        &trans                 &trans                         &trans      &trans          &trans          &trans
             >;
         };
 
@@ -147,13 +149,13 @@ TODO:
 //    ├─────┼─────────┼──────────┼─────────┼─────────┼─────────┼─────┐   ┌─────┼────────────┼─────────┼─────────┼─────┼─────┼─────┤
 //    │     │         │ lalt(f4) │         │         │         │     │   │     │            │         │         │     │     │     │
 //    └─────┴─────────┼──────────┼─────────┼─────────┼─────────┼─────┘   └─────┼────────────┼─────────┼─────────┼─────┼─────┴─────┘
-//                    │          │         │         │         │               │            │         │         │     │
+//                    │          │         │         │         │               │  lalt(f4)  │         │         │     │
 //                    └──────────┴─────────┴─────────┴─────────┘               └────────────┴─────────┴─────────┴─────┘
   &trans   &trans       &trans       &trans       &trans       &trans                             &trans              &trans          &trans      &trans       &trans   &trans
   &trans   &kp LG(N6)   &kp LG(N7)   &kp LG(N8)   &kp LG(N9)   &kp LG(N0)                         &trans              &kp LC(Z)       &kp LC(Y)   &trans       &trans   &trans
   &trans   &kp LG(N1)   &kp LG(N2)   &kp LG(N3)   &kp LG(N4)   &kp LG(N5)                         &kp LC(BACKSPACE)   &kp BACKSPACE   &kp ENTER   &kp DELETE   &trans   &trans
   &trans   &trans       &kp LA(F4)   &trans       &trans       &trans       &trans       &trans   &trans              &trans          &trans      &trans       &trans   &trans
-                        &trans       &trans       &trans       &trans                             &trans              &trans          &trans      &trans
+                        &trans       &trans       &trans       &trans                             &kp LA(F4)          &trans          &trans      &trans
            >;
         };
 
