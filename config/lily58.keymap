@@ -7,11 +7,11 @@
 /*
 TODO:
 
-- Re-Consider replacing single quote with plus in default layer.
+- Allow Enter with ñ+k on all layers, not just the default one.
+    - This is to allow using it on the symbols or mumbers layer.
+    - Maybe using a combo?
 
-- Replace Alt+num to move between desktops. Use Win+num instead.
-    - This is to avoid false positives of "alt" in applications while switching on both Win and Linux.
-    - keyd: replace keybinds for Capslock layer.
+- Re-Consider replacing single quote with plus in default layer.
 
 - Numbers with alt (left hand).
     - Or maybe just use software for this.
@@ -250,22 +250,22 @@ TODO:
         functions_layer {
             display-name = "L_FUNC";
             bindings = <
-//    ┌─────────────┬──────┬──────┬──────┬─────┬─────┐                       ┌──────────┬──────────┬──────────┬──────────┬──────────┬────────┐
-//    │             │      │      │      │     │     │                       │ bt_sel 0 │ bt_sel 1 │ bt_sel 2 │ bt_sel 3 │ bt_sel 4 │ bt_clr │
-//    ├─────────────┼──────┼──────┼──────┼─────┼─────┤                       ├──────────┼──────────┼──────────┼──────────┼──────────┼────────┤
-//    │             │      │ volu │      │     │     │                       │    f1    │    f2    │    f3    │    f4    │    f5    │   f6   │
-//    ├─────────────┼──────┼──────┼──────┼─────┼─────┤                       ├──────────┼──────────┼──────────┼──────────┼──────────┼────────┤
-//    │ to L_DEFAU< │ prev │ vold │ next │     │     │                       │    f7    │    f8    │    f9    │   f10    │   f11    │  f12   │
-//    ├─────────────┼──────┼──────┼──────┼─────┼─────┼─────────────┐   ┌─────┼──────────┼──────────┼──────────┼──────────┼──────────┼────────┤
-//    │             │ mute │ play │      │     │     │ to L_NORMAL │   │     │          │          │          │          │          │        │
-//    └─────────────┴──────┼──────┼──────┼─────┼─────┼─────────────┘   └─────┼──────────┼──────────┼──────────┼──────────┼──────────┴────────┘
-//                         │      │      │     │     │                       │          │          │          │          │
-//                         └──────┴──────┴─────┴─────┘                       └──────────┴──────────┴──────────┴──────────┘
-  &trans          &trans       &trans             &trans       &trans   &trans                               &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4   &bt BT_CLR
-  &trans          &trans       &kp C_VOL_UP       &trans       &trans   &trans                               &kp F1         &kp F2         &kp F3         &kp F4         &kp F5         &kp F6
-  &to L_DEFAULT   &kp C_PREV   &kp C_VOL_DN       &kp C_NEXT   &trans   &trans                               &kp F7         &kp F8         &kp F9         &kp F10        &kp F11        &kp F12
-  &trans          &kp C_MUTE   &kp C_PLAY_PAUSE   &trans       &trans   &trans   &to L_NORMAL       &trans   &trans         &trans         &trans         &trans         &trans         &trans
-                               &trans             &trans       &trans   &trans                               &trans         &trans         &trans         &trans
+//    ┌─────────────┬─────┬─────┬─────┬─────┬─────┐                       ┌──────────┬──────────┬──────────┬──────────┬──────────┬────────┐
+//    │             │     │     │     │     │     │                       │ bt_sel 0 │ bt_sel 1 │ bt_sel 2 │ bt_sel 3 │ bt_sel 4 │ bt_clr │
+//    ├─────────────┼─────┼─────┼─────┼─────┼─────┤                       ├──────────┼──────────┼──────────┼──────────┼──────────┼────────┤
+//    │             │ f1  │ f2  │ f3  │ f4  │     │                       │          │          │          │          │          │        │
+//    ├─────────────┼─────┼─────┼─────┼─────┼─────┤                       ├──────────┼──────────┼──────────┼──────────┼──────────┼────────┤
+//    │ to L_DEFAU< │ f5  │ f6  │ f7  │ f8  │     │                       │          │          │          │          │          │        │
+//    ├─────────────┼─────┼─────┼─────┼─────┼─────┼─────────────┐   ┌─────┼──────────┼──────────┼──────────┼──────────┼──────────┼────────┤
+//    │             │ f9  │ f10 │ f11 │ f12 │     │ to L_NORMAL │   │     │          │          │          │          │          │        │
+//    └─────────────┴─────┼─────┼─────┼─────┼─────┼─────────────┘   └─────┼──────────┼──────────┼──────────┼──────────┼──────────┴────────┘
+//                        │     │     │     │     │                       │          │          │          │          │
+//                        └─────┴─────┴─────┴─────┘                       └──────────┴──────────┴──────────┴──────────┘
+  &trans          &trans   &trans    &trans    &trans    &trans                               &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4   &bt BT_CLR
+  &trans          &kp F1   &kp F2    &kp F3    &kp F4    &trans                               &trans         &trans         &trans         &trans         &trans         &trans
+  &to L_DEFAULT   &kp F5   &kp F6    &kp F7    &kp F8    &trans                               &trans         &trans         &trans         &trans         &trans         &trans
+  &trans          &kp F9   &kp F10   &kp F11   &kp F12   &trans   &to L_NORMAL       &trans   &trans         &trans         &trans         &trans         &trans         &trans
+                           &trans    &trans    &trans    &trans                               &trans         &trans         &trans         &trans
             >;
         };
 
