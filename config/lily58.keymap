@@ -172,37 +172,37 @@ TODO:
 //    ├─────────┼────────────┼────────────┼───────────┼──────────┼───────────┤                ├──────┼──────┼──────┼───────────┼──────┼──────┤
 //    │  capsw  │  lctl(T)   │ mo L_SYM2  │ mo L_SYM2 │ mo L_NUM │    ent    │                │ ES_< │ ES_( │ ES_= │   ES_)    │ ES_> │ ES_* │
 //    ├─────────┼────────────┼────────────┼───────────┼──────────┼───────────┼──────┐   ┌─────┼──────┼──────┼──────┼───────────┼──────┼──────┤
-//    │         │            │            │           │          │ lctl(ent) │ bspc │   │ ent │ ES_! │      │ ES_; │   ES_:    │ ES_? │ ES_\ │
+//    │         │            │            │           │          │ lctl(ent) │ bspc │   │ ent │ ES_% │ ES_! │ ES_; │   ES_:    │ ES_? │ ES_\ │
 //    └─────────┴────────────┼────────────┼───────────┼──────────┼───────────┼──────┘   └─────┼──────┼──────┼──────┼───────────┼──────┴──────┘
 //                           │            │           │          │           │                │      │      │      │           │
 //                           └────────────┴───────────┴──────────┴───────────┘                └──────┴──────┴──────┴───────────┘
-  &kp LC(N0)   &kp LC(ES_MINUS)   &kp LC(ES_PLUS)   &kp K_CALC   &none       &none                                           &none         &kp ES_SQT    &kp ES_DQT     &backtick      &kp F11        &kp F12
-  &trans       &kp PSCRN          &kp F2            &kp LC(Z)    &kp LC(Y)   &kp BACKSPACE                                   &kp ES_LBRC   &kp ES_LBKT   &kp ES_PLUS    &kp ES_RBKT    &kp ES_RBRC    &kp ES_SLASH
-  &caps_word   &kp LC(T)          &mo L_SYM2        &mo L_SYM2   &mo L_NUM   &kp ENTER                                       &kp ES_LT     &kp ES_LPAR   &kp ES_EQUAL   &kp ES_RPAR    &kp ES_GT      &kp ES_STAR
-  &trans       &none              &none             &none        &none       &kp LC(ENTER)   &kp BACKSPACE       &kp ENTER   &kp ES_EXCL   &none         &kp ES_SEMI    &kp ES_COLON   &kp ES_QMARK   &kp ES_BACKSLASH
-                                  &trans            &trans       &trans      &trans                                          &trans        &none         &trans         &trans
+  &kp LC(N0)   &kp LC(ES_MINUS)   &kp LC(ES_PLUS)   &kp K_CALC   &none       &none                                           &none          &kp ES_SQT    &kp ES_DQT     &backtick      &kp F11        &kp F12
+  &trans       &kp PSCRN          &kp F2            &kp LC(Z)    &kp LC(Y)   &kp BACKSPACE                                   &kp ES_LBRC    &kp ES_LBKT   &kp ES_PLUS    &kp ES_RBKT    &kp ES_RBRC    &kp ES_SLASH
+  &caps_word   &kp LC(T)          &mo L_SYM2        &mo L_SYM2   &mo L_NUM   &kp ENTER                                       &kp ES_LT      &kp ES_LPAR   &kp ES_EQUAL   &kp ES_RPAR    &kp ES_GT      &kp ES_STAR
+  &trans       &none              &none             &none        &none       &kp LC(ENTER)   &kp BACKSPACE       &kp ENTER   &kp ES_PRCNT   &kp ES_EXCL   &kp ES_SEMI    &kp ES_COLON   &kp ES_QMARK   &kp ES_BACKSLASH
+                                  &trans            &trans       &trans      &trans                                          &trans         &none         &trans         &trans
            >;
         };
 
         secondary_symbols_layer {
             display-name = "L_SYM2";
             bindings = <
-//    ┌─────┬───────────┬──────┬──────┬──────┬─────┐               ┌───────┬──────┬──────┬───────────┬───────┬──────┐
-//    │     │    f1     │  f2  │  f3  │  f4  │ f5  │               │       │      │      │           │       │      │
-//    ├─────┼───────────┼──────┼──────┼──────┼─────┤               ├───────┼──────┼──────┼───────────┼───────┼──────┤
-//    │     │   ES_@    │ ES_& │ ES_% │ ES_# │     │               │       │ ES_@ │ ES_& │   ES_%    │ ES_#  │ ES_$ │
-//    ├─────┼───────────┼──────┼──────┼──────┼─────┤               ├───────┼──────┼──────┼───────────┼───────┼──────┤
-//    │     │ &backtick │ ES_~ │ ES_\ │ ES_/ │     │               │       │ ES_" │ ES_' │ &backtick │ ES_~  │      │
-//    ├─────┼───────────┼──────┼──────┼──────┼─────┼─────┐   ┌─────┼───────┼──────┼──────┼───────────┼───────┼──────┤
-//    │     │           │      │      │      │     │     │   │     │ ES_I! │      │ ES_: │           │ ES_I? │      │
-//    └─────┴───────────┼──────┼──────┼──────┼─────┼─────┘   └─────┼───────┼──────┼──────┼───────────┼───────┴──────┘
-//                      │      │      │      │     │               │       │      │      │           │
-//                      └──────┴──────┴──────┴─────┘               └───────┴──────┴──────┴───────────┘
-  &none    &kp F1      &kp F2         &kp F3             &kp F4         &kp F5                       &none          &none        &none          &none          &none           &none
-  &trans   &kp ES_AT   &kp ES_AMPS    &kp ES_PRCNT       &kp ES_HASH    &none                        &none          &kp ES_AT    &kp ES_AMPS    &kp ES_PRCNT   &kp ES_HASH     &kp ES_DOLLAR
-  &trans   &backtick   &kp ES_TILDE   &kp ES_BACKSLASH   &kp ES_SLASH   &none                        &none          &kp ES_DQT   &kp ES_SQT     &backtick      &kp ES_TILDE    &none
-  &trans   &none       &none          &none              &none          &none    &none       &none   &kp ES_IEXCL   &none        &kp ES_COLON   &none          &kp ES_IQMARK   &trans
-                       &trans         &trans             &trans         &trans                       &trans         &trans       &trans         &trans
+//    ┌─────┬───────────┬──────┬──────┬──────┬─────┐               ┌─────┬───────┬──────┬───────────┬───────┬──────┐
+//    │     │    f1     │  f2  │  f3  │  f4  │ f5  │               │     │       │      │           │       │      │
+//    ├─────┼───────────┼──────┼──────┼──────┼─────┤               ├─────┼───────┼──────┼───────────┼───────┼──────┤
+//    │     │   ES_@    │ ES_& │ ES_% │ ES_# │     │               │     │ ES_@  │ ES_& │   ES_%    │ ES_#  │ ES_$ │
+//    ├─────┼───────────┼──────┼──────┼──────┼─────┤               ├─────┼───────┼──────┼───────────┼───────┼──────┤
+//    │     │ &backtick │ ES_~ │ ES_\ │ ES_/ │     │               │     │ ES_"  │ ES_' │ &backtick │ ES_~  │      │
+//    ├─────┼───────────┼──────┼──────┼──────┼─────┼─────┐   ┌─────┼─────┼───────┼──────┼───────────┼───────┼──────┤
+//    │     │           │      │      │      │     │     │   │     │     │ ES_I! │ ES_: │           │ ES_I? │      │
+//    └─────┴───────────┼──────┼──────┼──────┼─────┼─────┘   └─────┼─────┼───────┼──────┼───────────┼───────┴──────┘
+//                      │      │      │      │     │               │     │       │      │           │
+//                      └──────┴──────┴──────┴─────┘               └─────┴───────┴──────┴───────────┘
+  &none    &kp F1      &kp F2         &kp F3             &kp F4         &kp F5                       &none    &none          &none          &none          &none           &none
+  &trans   &kp ES_AT   &kp ES_AMPS    &kp ES_PRCNT       &kp ES_HASH    &none                        &none    &kp ES_AT      &kp ES_AMPS    &kp ES_PRCNT   &kp ES_HASH     &kp ES_DOLLAR
+  &trans   &backtick   &kp ES_TILDE   &kp ES_BACKSLASH   &kp ES_SLASH   &none                        &none    &kp ES_DQT     &kp ES_SQT     &backtick      &kp ES_TILDE    &none
+  &trans   &none       &none          &none              &none          &none    &none       &none   &none    &kp ES_IEXCL   &kp ES_COLON   &none          &kp ES_IQMARK   &trans
+                       &trans         &trans             &trans         &trans                       &trans   &trans         &trans         &trans
             >;
         };
 
@@ -231,22 +231,22 @@ TODO:
         numbers_layer {
             display-name = "L_NUM";
             bindings = <
-//    ┌─────────────┬─────┬─────┬─────┬─────┬─────┐               ┌──────┬─────┬─────┬─────┬──────┬──────┐
-//    │             │     │     │     │     │     │               │      │     │     │     │      │      │
-//    ├─────────────┼─────┼─────┼─────┼─────┼─────┤               ├──────┼─────┼─────┼─────┼──────┼──────┤
-//    │             │     │     │     │     │     │               │ bspc │  7  │  8  │  9  │  ,   │ ES_+ │
-//    ├─────────────┼─────┼─────┼─────┼─────┼─────┤               ├──────┼─────┼─────┼─────┼──────┼──────┤
-//    │ to L_DEFAU< │     │     │     │     │     │               │      │  4  │  5  │  6  │  .   │ ES_* │
-//    ├─────────────┼─────┼─────┼─────┼─────┼─────┼─────┐   ┌─────┼──────┼─────┼─────┼─────┼──────┼──────┤
-//    │             │     │     │     │     │     │     │   │     │      │  1  │  2  │  3  │ ES_- │ ES_/ │
-//    └─────────────┴─────┼─────┼─────┼─────┼─────┼─────┘   └─────┼──────┼─────┼─────┼─────┼──────┴──────┘
-//                        │     │     │     │     │               │  0   │     │     │     │
-//                        └─────┴─────┴─────┴─────┘               └──────┴─────┴─────┴─────┘
-  &none           &none    &none    &none    &none    &none                        &none           &none    &none    &none    &none          &none
-  &trans          &trans   &trans   &trans   &trans   &trans                       &kp BACKSPACE   &kp N7   &kp N8   &kp N9   &kp COMMA      &kp ES_PLUS
-  &to L_DEFAULT   &trans   &trans   &trans   &trans   &trans                       &none           &kp N4   &kp N5   &kp N6   &kp DOT        &kp ES_STAR
-  &trans          &trans   &trans   &trans   &trans   &trans   &none       &none   &none           &kp N1   &kp N2   &kp N3   &kp ES_MINUS   &kp ES_SLASH
-                           &trans   &trans   &trans   &trans                       &kp N0          &none    &none    &none
+//    ┌─────┬─────┬─────┬─────┬─────┬─────┐               ┌──────┬─────┬─────┬─────┬──────┬──────┐
+//    │     │     │     │     │     │     │               │      │     │     │     │      │      │
+//    ├─────┼─────┼─────┼─────┼─────┼─────┤               ├──────┼─────┼─────┼─────┼──────┼──────┤
+//    │     │     │     │     │     │     │               │ bspc │  7  │  8  │  9  │  ,   │ ES_/ │
+//    ├─────┼─────┼─────┼─────┼─────┼─────┤               ├──────┼─────┼─────┼─────┼──────┼──────┤
+//    │     │     │     │     │     │     │               │      │  4  │  5  │  6  │  .   │ ES_* │
+//    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┐   ┌─────┼──────┼─────┼─────┼─────┼──────┼──────┤
+//    │     │     │     │     │     │     │     │   │     │      │  1  │  2  │  3  │ ES_- │ ES_+ │
+//    └─────┴─────┼─────┼─────┼─────┼─────┼─────┘   └─────┼──────┼─────┼─────┼─────┼──────┴──────┘
+//                │     │     │     │     │               │  0   │     │     │     │
+//                └─────┴─────┴─────┴─────┘               └──────┴─────┴─────┴─────┘
+  &none    &none    &none    &none    &none    &none                        &none           &none    &none    &none    &none          &none
+  &trans   &trans   &trans   &trans   &trans   &trans                       &kp BACKSPACE   &kp N7   &kp N8   &kp N9   &kp COMMA      &kp ES_SLASH
+  &none    &trans   &trans   &trans   &trans   &trans                       &none           &kp N4   &kp N5   &kp N6   &kp DOT        &kp ES_STAR
+  &trans   &trans   &trans   &trans   &trans   &trans   &none       &none   &none           &kp N1   &kp N2   &kp N3   &kp ES_MINUS   &kp ES_PLUS
+                    &trans   &trans   &trans   &trans                       &kp N0          &none    &none    &none
             >;
         };
 
