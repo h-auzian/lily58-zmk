@@ -135,7 +135,7 @@ TODO:
   &none   &none             &none       &none         &none                  &none                           &none       &none           &none           &none           &none                    &none
   &none   &kp LC(LS(TAB))   &kp LC(W)   &kp LC(TAB)   &repeat_last_command   &none                           &none       &kp LA(LS(U))   &kp LA(LS(I))   &kp LA(LS(O))   &kp LA(LS(P))            &none
   &none   &none             &none       &none         &kp LA(LS(F))          &none                           &kp LA(F)   &kp LA(LS(J))   &kp LA(LS(K))   &kp LA(LS(L))   &kp LA(LS(ES_N_TILDE))   &none
-  &none   &none             &none       &none         &none                  &none       &none       &none   &none       &kp LG(Q)       &none           &none           &none                    &none
+  &none   &none             &none       &none         &none                  &none       &none       &none   &none       &kp LG(Q)       &none           &none           &none                    &trans
                             &none       &none         &none                  &kp LC(L)                       &kp LC(C)   &none           &none           &none
             >;
         };
@@ -154,11 +154,11 @@ TODO:
 //    └─────┴─────────┼─────────┼─────────┼─────────┼─────────┼─────┘   └─────┼────────────┼─────────┼─────────┼─────┼─────┴─────┘
 //                    │         │         │         │         │               │  lalt(f4)  │         │         │     │
 //                    └─────────┴─────────┴─────────┴─────────┘               └────────────┴─────────┴─────────┴─────┘
-  &none   &none        &none        &none        &none        &none                            &none               &none           &none       &none        &none   &none
-  &none   &kp LG(N6)   &kp LG(N7)   &kp LG(N8)   &kp LG(N9)   &kp LG(N0)                       &none               &kp LC(Z)       &kp LC(Y)   &none        &none   &none
-  &none   &kp LG(N1)   &kp LG(N2)   &kp LG(N3)   &kp LG(N4)   &kp LG(N5)                       &kp LC(BACKSPACE)   &kp BACKSPACE   &kp ENTER   &kp DELETE   &none   &none
-  &none   &none        &none        &none        &none        &none        &none       &none   &none               &none           &none       &none        &none   &none
-                       &none        &none        &none        &none                            &kp LA(F4)          &none           &none       &none
+  &none    &none        &none        &none        &none        &none                            &none               &none           &none       &none        &none   &none
+  &none    &kp LG(N6)   &kp LG(N7)   &kp LG(N8)   &kp LG(N9)   &kp LG(N0)                       &none               &kp LC(Z)       &kp LC(Y)   &none        &none   &none
+  &none    &kp LG(N1)   &kp LG(N2)   &kp LG(N3)   &kp LG(N4)   &kp LG(N5)                       &kp LC(BACKSPACE)   &kp BACKSPACE   &kp ENTER   &kp DELETE   &none   &none
+  &trans   &none        &none        &none        &none        &none        &none       &none   &none               &none           &none       &none        &none   &none
+                        &none        &none        &none        &none                            &kp LA(F4)          &none           &none       &none
            >;
         };
 
