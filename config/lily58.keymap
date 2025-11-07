@@ -8,12 +8,11 @@
 TODO:
 
 - Consider homerow mods, but only while the left thumb key is pressed.
+    - Only for Ctrl and Alt. Shift is unnecesary.
 
 - Allow Enter with ñ+k on all layers, not just the default one.
     - This is to allow using it on the symbols or mumbers layer.
     - Maybe using a combo?
-
-- Re-Consider replacing single quote with plus in default layer.
 
 - Numbers with alt (left hand).
     - Or maybe just use software for this.
@@ -26,10 +25,11 @@ TODO:
  */
 
 #include <behaviors.dtsi>
-#include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/ext_power.h>
+#include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/pointing.h>
 #include "keys_es_latin_american.h"
 
 // Layer constants
@@ -39,9 +39,10 @@ TODO:
 #define L_SYM 3
 #define L_SYM2 4
 #define L_NAV 5
-#define L_NUM 6
-#define L_FUNC 7
-#define L_NORMAL 8
+#define L_MOUSE 6
+#define L_NUM 7
+#define L_FUNC 8
+#define L_NORMAL 9
 
 &caps_word {
     continue-list = <UNDERSCORE ES_UNDERSCORE MINUS ES_MINUS QMARK BACKSPACE DELETE>;
@@ -165,22 +166,22 @@ TODO:
         symbols_layer {
             display-name = "L_SYM";
             bindings = <
-//    ┌─────────┬────────────┬────────────┬───────────┬──────────┬───────────┐                ┌──────┬──────┬──────┬───────────┬──────┬──────┐
-//    │ lctl(0) │ lctl(ES_-) │ lctl(ES_+) │ K_CAlctl  │          │           │                │      │ ES_' │ ES_" │ &backtick │ f11  │ f12  │
-//    ├─────────┼────────────┼────────────┼───────────┼──────────┼───────────┤                ├──────┼──────┼──────┼───────────┼──────┼──────┤
-//    │         │    pscr    │     f2     │  lctl(Z)  │ lctl(Y)  │   bspc    │                │ ES_{ │ ES_[ │ ES_+ │   ES_]    │ ES_} │ ES_/ │
-//    ├─────────┼────────────┼────────────┼───────────┼──────────┼───────────┤                ├──────┼──────┼──────┼───────────┼──────┼──────┤
-//    │  capsw  │  lctl(T)   │ mo L_SYM2  │ mo L_SYM2 │ mo L_NUM │    ent    │                │ ES_< │ ES_( │ ES_= │   ES_)    │ ES_> │ ES_* │
-//    ├─────────┼────────────┼────────────┼───────────┼──────────┼───────────┼──────┐   ┌─────┼──────┼──────┼──────┼───────────┼──────┼──────┤
-//    │         │            │            │           │          │ lctl(ent) │ bspc │   │ ent │ ES_% │ ES_! │ ES_; │   ES_:    │ ES_? │ ES_\ │
-//    └─────────┴────────────┼────────────┼───────────┼──────────┼───────────┼──────┘   └─────┼──────┼──────┼──────┼───────────┼──────┴──────┘
-//                           │            │           │          │           │                │      │      │      │           │
-//                           └────────────┴───────────┴──────────┴───────────┘                └──────┴──────┴──────┴───────────┘
+//    ┌─────────┬────────────┬────────────┬───────────┬──────────┬───────────┐                ┌──────┬────────────┬──────┬───────────┬──────┬──────┐
+//    │ lctl(0) │ lctl(ES_-) │ lctl(ES_+) │ K_CAlctl  │          │           │                │      │    ES_'    │ ES_" │ &backtick │ f11  │ f12  │
+//    ├─────────┼────────────┼────────────┼───────────┼──────────┼───────────┤                ├──────┼────────────┼──────┼───────────┼──────┼──────┤
+//    │         │    pscr    │     f2     │  lctl(Z)  │ lctl(Y)  │   bspc    │                │ ES_{ │    ES_[    │ ES_+ │   ES_]    │ ES_} │ ES_/ │
+//    ├─────────┼────────────┼────────────┼───────────┼──────────┼───────────┤                ├──────┼────────────┼──────┼───────────┼──────┼──────┤
+//    │  capsw  │  lctl(T)   │ mo L_SYM2  │ mo L_SYM2 │ mo L_NUM │    ent    │                │ ES_< │    ES_(    │ ES_= │   ES_)    │ ES_> │ ES_* │
+//    ├─────────┼────────────┼────────────┼───────────┼──────────┼───────────┼──────┐   ┌─────┼──────┼────────────┼──────┼───────────┼──────┼──────┤
+//    │         │            │            │           │          │ lctl(ent) │ bspc │   │ ent │ ES_% │    ES_!    │ ES_; │   ES_:    │ ES_? │ ES_\ │
+//    └─────────┴────────────┼────────────┼───────────┼──────────┼───────────┼──────┘   └─────┼──────┼────────────┼──────┼───────────┼──────┴──────┘
+//                           │            │           │          │           │                │      │ mo L_MOUSE │      │           │
+//                           └────────────┴───────────┴──────────┴───────────┘                └──────┴────────────┴──────┴───────────┘
   &kp LC(N0)   &kp LC(ES_MINUS)   &kp LC(ES_PLUS)   &kp K_CALC   &none       &none                                           &none          &kp ES_SQT    &kp ES_DQT     &backtick      &kp F11        &kp F12
   &trans       &kp PSCRN          &kp F2            &kp LC(Z)    &kp LC(Y)   &kp BACKSPACE                                   &kp ES_LBRC    &kp ES_LBKT   &kp ES_PLUS    &kp ES_RBKT    &kp ES_RBRC    &kp ES_SLASH
   &caps_word   &kp LC(T)          &mo L_SYM2        &mo L_SYM2   &mo L_NUM   &kp ENTER                                       &kp ES_LT      &kp ES_LPAR   &kp ES_EQUAL   &kp ES_RPAR    &kp ES_GT      &kp ES_STAR
   &trans       &none              &none             &none        &none       &kp LC(ENTER)   &kp BACKSPACE       &kp ENTER   &kp ES_PRCNT   &kp ES_EXCL   &kp ES_SEMI    &kp ES_COLON   &kp ES_QMARK   &kp ES_BACKSLASH
-                                  &trans            &trans       &trans      &trans                                          &trans         &none         &trans         &trans
+                                  &trans            &trans       &trans      &trans                                          &trans         &mo L_MOUSE   &trans         &trans
            >;
         };
 
@@ -209,24 +210,47 @@ TODO:
         navigation_layer {
             display-name = "L_NAV";
             bindings = <
-//    ┌─────────────┬─────┬────────────┬─────────┬─────┬────────────┐               ┌──────┬────────────┬──────┬────────────┬─────┬──────┐
-//    │             │     │            │         │     │            │               │      │            │      │            │     │      │
-//    ├─────────────┼─────┼────────────┼─────────┼─────┼────────────┤               ├──────┼────────────┼──────┼────────────┼─────┼──────┤
-//    │             │ app │ lctl(rght) │         │     │            │               │ pgup │    home    │  up  │    end     │     │ bspc │
-//    ├─────────────┼─────┼────────────┼─────────┼─────┼────────────┤               ├──────┼────────────┼──────┼────────────┼─────┼──────┤
-//    │ to L_DEFAU< │     │            │  bspc   │     │            │               │ pgdn │    left    │ down │    rght    │     │ ent  │
-//    ├─────────────┼─────┼────────────┼─────────┼─────┼────────────┼─────┐   ┌─────┼──────┼────────────┼──────┼────────────┼─────┼──────┤
-//    │             │     │            │ kt lsft │     │ lctl(left) │     │   │     │      │ lctl(left) │      │ lctl(rght) │     │      │
-//    └─────────────┴─────┼────────────┼─────────┼─────┼────────────┼─────┘   └─────┼──────┼────────────┼──────┼────────────┼─────┴──────┘
-//                        │            │         │     │    ent     │               │ spc  │            │      │            │
+//    ┌─────────────┬─────┬────────────┬─────────┬─────┬────────────┐               ┌──────┬────────────┬──────┬────────────┬─────┬─────┐
+//    │             │     │            │         │     │            │               │      │            │      │            │     │     │
+//    ├─────────────┼─────┼────────────┼─────────┼─────┼────────────┤               ├──────┼────────────┼──────┼────────────┼─────┼─────┤
+//    │             │ app │ lctl(rght) │         │     │            │               │ pgup │    home    │  up  │    end     │     │     │
+//    ├─────────────┼─────┼────────────┼─────────┼─────┼────────────┤               ├──────┼────────────┼──────┼────────────┼─────┼─────┤
+//    │ to L_DEFAU< │     │            │  bspc   │     │            │               │ pgdn │    left    │ down │    rght    │     │     │
+//    ├─────────────┼─────┼────────────┼─────────┼─────┼────────────┼─────┐   ┌─────┼──────┼────────────┼──────┼────────────┼─────┼─────┤
+//    │             │     │            │ kt lsft │     │ lctl(left) │     │   │     │      │ lctl(left) │      │ lctl(rght) │     │     │
+//    └─────────────┴─────┼────────────┼─────────┼─────┼────────────┼─────┘   └─────┼──────┼────────────┼──────┼────────────┼─────┴─────┘
+//                        │            │         │     │ mo L_MOUSE │               │ spc  │            │      │            │
 //                        └────────────┴─────────┴─────┴────────────┘               └──────┴────────────┴──────┴────────────┘
   &none           &none       &none           &none           &none    &none                              &none           &none          &none      &none           &none   &none
-  &trans          &kp K_APP   &kp LC(RIGHT)   &none           &none    &none                              &kp PAGE_UP     &kp HOME       &kp UP     &kp END         &none   &kp BACKSPACE
-  &to L_DEFAULT   &none       &none           &kp BACKSPACE   &none    &none                              &kp PAGE_DOWN   &kp LEFT       &kp DOWN   &kp RIGHT       &none   &kp ENTER
+  &trans          &kp K_APP   &kp LC(RIGHT)   &none           &none    &none                              &kp PAGE_UP     &kp HOME       &kp UP     &kp END         &none   &none
+  &to L_DEFAULT   &none       &none           &kp BACKSPACE   &none    &none                              &kp PAGE_DOWN   &kp LEFT       &kp DOWN   &kp RIGHT       &none   &none
   &trans          &none       &none           &kt LSHFT       &none    &kp LC(LEFT)   &none       &none   &none           &kp LC(LEFT)   &none      &kp LC(RIGHT)   &none   &trans
-                              &trans          &trans          &trans   &kp ENTER                          &kp SPACE       &trans         &trans     &trans
+                              &trans          &trans          &trans   &mo L_MOUSE                        &kp SPACE       &trans         &trans     &trans
             >;
         };
+
+        mouse_layer {
+            display-name = "L_MOUSE";
+            bindings = <
+//    ┌─────┬─────┬─────┬─────┬─────┬─────┐               ┌────────────────┬────────────────┬────────────────┬────────────────┬────────────────┬─────┐
+//    │     │     │     │     │     │     │               │                │                │  &msc SCRL_up  │                │                │     │
+//    ├─────┼─────┼─────┼─────┼─────┼─────┤               ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┼─────┤
+//    │     │     │     │     │     │     │               │                │      lclk      │  &mmv MOVE_up  │      rclk      │                │     │
+//    ├─────┼─────┼─────┼─────┼─────┼─────┤               ├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┼─────┤
+//    │     │     │     │     │     │     │               │ &msc SCRL_left │ &mmv MOVE_left │ &mmv MOVE_down │ &mmv MOVE_rght │ &msc SCRL_rght │     │
+//    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┐   ┌─────┼────────────────┼────────────────┼────────────────┼────────────────┼────────────────┼─────┤
+//    │     │     │     │     │     │     │     │   │     │                │                │ &msc SCRL_down │                │                │     │
+//    └─────┴─────┼─────┼─────┼─────┼─────┼─────┘   └─────┼────────────────┼────────────────┼────────────────┼────────────────┼────────────────┴─────┘
+//                │     │     │     │     │               │                │                │                │                │
+//                └─────┴─────┴─────┴─────┘               └────────────────┴────────────────┴────────────────┴────────────────┘
+  &none    &none   &none   &none   &none   &none                       &none            &none            &msc SCRL_UP     &none             &none             &none
+  &none    &none   &none   &none   &none   &none                       &none            &mkp LCLK        &mmv MOVE_UP     &mkp RCLK         &none             &none
+  &none    &none   &none   &none   &none   &none                       &msc SCRL_LEFT   &mmv MOVE_LEFT   &mmv MOVE_DOWN   &mmv MOVE_RIGHT   &msc SCRL_RIGHT   &none
+  &trans   &none   &none   &none   &none   &none   &none       &none   &none            &none            &msc SCRL_DOWN   &none             &none             &trans
+                   &none   &none   &none   &none                       &none            &none            &none            &none
+           >;
+        };
+
 
         numbers_layer {
             display-name = "L_NUM";
@@ -240,13 +264,13 @@ TODO:
 //    ├─────┼─────┼─────┼─────┼─────┼─────┼─────┐   ┌─────┼──────┼─────┼─────┼─────┼──────┼──────┤
 //    │     │     │     │     │     │     │     │   │     │      │  1  │  2  │  3  │ ES_- │ ES_+ │
 //    └─────┴─────┼─────┼─────┼─────┼─────┼─────┘   └─────┼──────┼─────┼─────┼─────┼──────┴──────┘
-//                │     │     │     │     │               │  0   │     │     │     │
+//                │     │     │     │     │               │  0   │  0  │     │     │
 //                └─────┴─────┴─────┴─────┘               └──────┴─────┴─────┴─────┘
   &none    &none    &none    &none    &none    &none                        &none           &none    &none    &none    &none          &none
   &trans   &trans   &trans   &trans   &trans   &trans                       &kp BACKSPACE   &kp N7   &kp N8   &kp N9   &kp COMMA      &kp ES_SLASH
   &none    &trans   &trans   &trans   &trans   &trans                       &none           &kp N4   &kp N5   &kp N6   &kp DOT        &kp ES_STAR
   &trans   &trans   &trans   &trans   &trans   &trans   &none       &none   &none           &kp N1   &kp N2   &kp N3   &kp ES_MINUS   &kp ES_PLUS
-                    &trans   &trans   &trans   &trans                       &kp N0          &none    &none    &none
+                    &trans   &trans   &trans   &trans                       &kp N0          &kp N0   &none    &none
             >;
         };
 
