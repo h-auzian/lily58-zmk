@@ -277,44 +277,44 @@ TODO:
         functions_layer {
             display-name = "L_FUNC";
             bindings = <
-//    ┌─────┬─────┬──────┬─────┬─────┬─────┐               ┌──────────┬──────────┬──────────┬──────────┬──────────┬────────┐
-//    │     │     │      │     │     │     │               │ bt_sel 0 │ bt_sel 1 │ bt_sel 2 │ bt_sel 3 │ bt_sel 4 │ bt_clr │
-//    ├─────┼─────┼──────┼─────┼─────┼─────┤               ├──────────┼──────────┼──────────┼──────────┼──────────┼────────┤
-//    │     │ f1  │  f2  │ f3  │ f4  │     │               │ out_ usb │ out_ ble │          │          │          │        │
-//    ├─────┼─────┼──────┼─────┼─────┼─────┤               ├──────────┼──────────┼──────────┼──────────┼──────────┼────────┤
-//    │     │ f5  │  f6  │ f7  │ f8  │     │               │          │          │          │          │          │        │
-//    ├─────┼─────┼──────┼─────┼─────┼─────┼─────┐   ┌─────┼──────────┼──────────┼──────────┼──────────┼──────────┼────────┤
-//    │     │ f9  │ f10  │ f11 │ f12 │     │     │   │     │          │          │          │          │          │        │
-//    └─────┴─────┼──────┼─────┼─────┼─────┼─────┘   └─────┼──────────┼──────────┼──────────┼──────────┼──────────┴────────┘
-//                │ boot │     │     │     │               │          │          │          │   boot   │
-//                └──────┴─────┴─────┴─────┘               └──────────┴──────────┴──────────┴──────────┘
-  &none   &none    &none         &none     &none     &none                       &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4   &bt BT_CLR
-  &none   &kp F1   &kp F2        &kp F3    &kp F4    &none                       &out OUT_USB   &out OUT_BLE   &none          &none          &none          &none
-  &none   &kp F5   &kp F6        &kp F7    &kp F8    &none                       &none          &none          &none          &none          &none          &none
-  &none   &kp F9   &kp F10       &kp F11   &kp F12   &none   &none       &none   &none          &none          &none          &none          &none          &none
-                   &bootloader   &none     &none     &none                       &none          &none          &none          &bootloader
+//    ┌─────┬─────┬──────┬─────┬─────┬─────┐                               ┌──────────┬──────────┬──────────┬──────────┬──────────┬────────┐
+//    │     │     │      │     │     │     │                               │ bt_sel 0 │ bt_sel 1 │ bt_sel 2 │ bt_sel 3 │ bt_sel 4 │ bt_clr │
+//    ├─────┼─────┼──────┼─────┼─────┼─────┤                               ├──────────┼──────────┼──────────┼──────────┼──────────┼────────┤
+//    │     │ f1  │  f2  │ f3  │ f4  │     │                               │ out_ usb │ out_ ble │          │          │          │        │
+//    ├─────┼─────┼──────┼─────┼─────┼─────┤                               ├──────────┼──────────┼──────────┼──────────┼──────────┼────────┤
+//    │     │ f5  │  f6  │ f7  │ f8  │     │                               │          │          │          │          │          │        │
+//    ├─────┼─────┼──────┼─────┼─────┼─────┼─────────────┐   ┌─────────────┼──────────┼──────────┼──────────┼──────────┼──────────┼────────┤
+//    │     │ f9  │ f10  │ f11 │ f12 │     │ to L_NORMAL │   │ to L_NORMAL │          │          │          │          │          │        │
+//    └─────┴─────┼──────┼─────┼─────┼─────┼─────────────┘   └─────────────┼──────────┼──────────┼──────────┼──────────┼──────────┴────────┘
+//                │ boot │     │     │     │                               │          │          │          │   boot   │
+//                └──────┴─────┴─────┴─────┘                               └──────────┴──────────┴──────────┴──────────┘
+  &none   &none    &none         &none     &none     &none                                     &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4   &bt BT_CLR
+  &none   &kp F1   &kp F2        &kp F3    &kp F4    &none                                     &out OUT_USB   &out OUT_BLE   &none          &none          &none          &none
+  &none   &kp F5   &kp F6        &kp F7    &kp F8    &none                                     &none          &none          &none          &none          &none          &none
+  &none   &kp F9   &kp F10       &kp F11   &kp F12   &none   &to L_NORMAL       &to L_NORMAL   &none          &none          &none          &none          &none          &none
+                   &bootloader   &none     &none     &none                                     &none          &none          &none          &bootloader
             >;
         };
 
         normal_layer {
             display-name = "L_NORMAL";
             bindings = <
-//    ┌───────────────────┬───┬──────┬──────┬──────┬─────┐                               ┌─────┬──────┬──────┬──────┬────────────────────┬──────────┐
-//    │       ES_|        │ 1 │  2   │  3   │  4   │  5  │                               │  6  │  7   │  8   │  9   │         0          │   ES_'   │
-//    ├───────────────────┼───┼──────┼──────┼──────┼─────┤                               ├─────┼──────┼──────┼──────┼────────────────────┼──────────┤
-//    │        tab        │ Q │  W   │  E   │  R   │  T  │                               │  Y  │  U   │  I   │  O   │         P          │ ES_ACUTE │
-//    ├───────────────────┼───┼──────┼──────┼──────┼─────┤                               ├─────┼──────┼──────┼──────┼────────────────────┼──────────┤
-//    │ lt L_WORKFLOW esc │ A │  S   │  D   │  F   │  G  │                               │  H  │  J   │  K   │  L   │ lt L_WINDOW ES_N_~ │   ES__   │
-//    ├───────────────────┼───┼──────┼──────┼──────┼─────┼─────────────┐   ┌─────────────┼─────┼──────┼──────┼──────┼────────────────────┼──────────┤
-//    │       lsft        │ Z │  X   │  C   │  V   │  B  │ to L_DEFAU< │   │ to L_DEFAU< │  N  │  M   │  ,   │  .   │        ES_-        │   rsft   │
-//    └───────────────────┴───┼──────┼──────┼──────┼─────┼─────────────┘   └─────────────┼─────┼──────┼──────┼──────┼────────────────────┴──────────┘
-//                            │ lgui │ lalt │ lctl │ spc │                               │ spc │ lctl │ lalt │ lgui │
-//                            └──────┴──────┴──────┴─────┘                               └─────┴──────┴──────┴──────┘
-  &kp ES_PIPE          &kp N1   &kp N2     &kp N3     &kp N4      &kp N5                                          &kp N6      &kp N7      &kp N8      &kp N9     &kp N0                    &kp ES_SQT
-  &kp TAB              &kp Q    &kp W      &kp E      &kp R       &kp T                                           &kp Y       &kp U       &kp I       &kp O      &kp P                     &kp ES_ACUTE
-  &lt L_WORKFLOW ESC   &kp A    &kp S      &kp D      &kp F       &kp G                                           &kp H       &kp J       &kp K       &kp L      &lt L_WINDOW ES_N_TILDE   &kp ES_UNDERSCORE
-  &kp LSHFT            &kp Z    &kp X      &kp C      &kp V       &kp B       &to L_DEFAULT       &to L_DEFAULT   &kp N       &kp M       &kp COMMA   &kp DOT    &kp ES_MINUS              &kp RSHFT
-                                &kp LGUI   &kp LALT   &kp LCTRL   &kp SPACE                                       &kp SPACE   &kp LCTRL   &kp LALT    &kp LGUI
+//    ┌───────────────────┬───┬──────┬──────┬──────┬─────┐                             ┌─────┬──────┬──────┬──────┬────────────────────┬──────────┐
+//    │       ES_|        │ 1 │  2   │  3   │  4   │  5  │                             │  6  │  7   │  8   │  9   │         0          │   ES_'   │
+//    ├───────────────────┼───┼──────┼──────┼──────┼─────┤                             ├─────┼──────┼──────┼──────┼────────────────────┼──────────┤
+//    │        tab        │ Q │  W   │  E   │  R   │  T  │                             │  Y  │  U   │  I   │  O   │         P          │ ES_ACUTE │
+//    ├───────────────────┼───┼──────┼──────┼──────┼─────┤                             ├─────┼──────┼──────┼──────┼────────────────────┼──────────┤
+//    │ lt L_WORKFLOW esc │ A │  S   │  D   │  F   │  G  │                             │  H  │  J   │  K   │  L   │ lt L_WINDOW ES_N_~ │   ES__   │
+//    ├───────────────────┼───┼──────┼──────┼──────┼─────┼───────────┐   ┌─────────────┼─────┼──────┼──────┼──────┼────────────────────┼──────────┤
+//    │       lsft        │ Z │  X   │  C   │  V   │  B  │ mo L_FUNC │   │ to L_DEFAU< │  N  │  M   │  ,   │  .   │        ES_-        │   rsft   │
+//    └───────────────────┴───┼──────┼──────┼──────┼─────┼───────────┘   └─────────────┼─────┼──────┼──────┼──────┼────────────────────┴──────────┘
+//                            │ lgui │ lalt │ lctl │ spc │                             │ spc │ lctl │ lalt │ lgui │
+//                            └──────┴──────┴──────┴─────┘                             └─────┴──────┴──────┴──────┘
+  &kp ES_PIPE          &kp N1   &kp N2     &kp N3     &kp N4      &kp N5                                       &kp N6      &kp N7      &kp N8      &kp N9     &kp N0                    &kp ES_SQT
+  &kp TAB              &kp Q    &kp W      &kp E      &kp R       &kp T                                        &kp Y       &kp U       &kp I       &kp O      &kp P                     &kp ES_ACUTE
+  &lt L_WORKFLOW ESC   &kp A    &kp S      &kp D      &kp F       &kp G                                        &kp H       &kp J       &kp K       &kp L      &lt L_WINDOW ES_N_TILDE   &kp ES_UNDERSCORE
+  &kp LSHFT            &kp Z    &kp X      &kp C      &kp V       &kp B       &mo L_FUNC       &to L_DEFAULT   &kp N       &kp M       &kp COMMA   &kp DOT    &kp ES_MINUS              &kp RSHFT
+                                &kp LGUI   &kp LALT   &kp LCTRL   &kp SPACE                                    &kp SPACE   &kp LCTRL   &kp LALT    &kp LGUI
             >;
         };
 
