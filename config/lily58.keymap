@@ -220,15 +220,15 @@ TODO:
 //    ├─────┼───────────┼──────┼──────┼──────┼─────┤               ├─────┼───────────┼──────┼──────┼───────┼─────┤
 //    │     │ &backtick │ ES_~ │ ES_\ │ ES_/ │     │               │     │ &backtick │ ES_" │ ES_' │ ES_~  │     │
 //    ├─────┼───────────┼──────┼──────┼──────┼─────┼─────┐   ┌─────┼─────┼───────────┼──────┼──────┼───────┼─────┤
-//    │     │           │      │      │      │     │     │   │     │     │   ES_I!   │ ES_^ │ ES_$ │ ES_I? │     │
+//    │     │           │      │      │      │     │     │   │     │     │   ES_I!   │ ES_$ │ ES_^ │ ES_I? │     │
 //    └─────┴───────────┼──────┼──────┼──────┼─────┼─────┘   └─────┼─────┼───────────┼──────┼──────┼───────┴─────┘
 //                      │      │      │      │     │               │     │           │      │      │
 //                      └──────┴──────┴──────┴─────┘               └─────┴───────────┴──────┴──────┘
-  &none    &none       &none          &none              &none          &none                        &none    &none          &none          &none           &none           &none
-  &trans   &kp ES_AT   &kp ES_AMPS    &kp ES_PRCNT       &kp ES_HASH    &none                        &none    &kp ES_AT      &kp ES_AMPS    &kp ES_PRCNT    &kp ES_HASH     &none
-  &trans   &backtick   &kp ES_TILDE   &kp ES_BACKSLASH   &kp ES_SLASH   &none                        &none    &backtick      &kp ES_DQT     &kp ES_SQT      &kp ES_TILDE    &none
-  &trans   &none       &none          &none              &none          &none    &none       &none   &none    &kp ES_IEXCL   &kp ES_CARET   &kp ES_DOLLAR   &kp ES_IQMARK   &trans
-                       &trans         &trans             &trans         &trans                       &trans   &trans         &trans         &trans
+  &none    &none       &none          &none              &none          &none                        &none    &none          &none           &none          &none           &none
+  &trans   &kp ES_AT   &kp ES_AMPS    &kp ES_PRCNT       &kp ES_HASH    &none                        &none    &kp ES_AT      &kp ES_AMPS     &kp ES_PRCNT   &kp ES_HASH     &none
+  &trans   &backtick   &kp ES_TILDE   &kp ES_BACKSLASH   &kp ES_SLASH   &none                        &none    &backtick      &kp ES_DQT      &kp ES_SQT     &kp ES_TILDE    &none
+  &trans   &none       &none          &none              &none          &none    &none       &none   &none    &kp ES_IEXCL   &kp ES_DOLLAR   &kp ES_CARET   &kp ES_IQMARK   &trans
+                       &trans         &trans             &trans         &trans                       &trans   &trans         &trans          &trans
             >;
         };
 
