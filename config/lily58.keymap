@@ -305,19 +305,19 @@ TODO:
 //    ┌─────┬─────┬──────┬─────┬─────┬─────┐                                 ┌──────────┬──────────┬──────────┬──────────┬──────────┬────────┐
 //    │     │     │      │     │     │     │                                 │ bt_sel 0 │ bt_sel 1 │ bt_sel 2 │ bt_sel 3 │ bt_sel 4 │ bt_clr │
 //    ├─────┼─────┼──────┼─────┼─────┼─────┤                                 ├──────────┼──────────┼──────────┼──────────┼──────────┼────────┤
-//    │     │ f1  │  f2  │ f3  │ f4  │     │                                 │ out_ usb │ out_ ble │          │          │          │        │
+//    │     │ f6  │  f7  │ f8  │ f9  │ f10 │                                 │ out_ usb │ out_ ble │          │          │          │        │
 //    ├─────┼─────┼──────┼─────┼─────┼─────┤                                 ├──────────┼──────────┼──────────┼──────────┼──────────┼────────┤
-//    │     │ f5  │  f6  │ f7  │ f8  │     │                                 │          │          │          │          │          │        │
+//    │     │ f1  │  f2  │ f3  │ f4  │ f5  │                                 │          │          │          │          │          │        │
 //    ├─────┼─────┼──────┼─────┼─────┼─────┼──────────────┐   ┌──────────────┼──────────┼──────────┼──────────┼──────────┼──────────┼────────┤
-//    │     │ f9  │ f10  │ f11 │ f12 │     │ tog L_NORMAL │   │ tog L_NORMAL │          │          │          │          │          │        │
+//    │     │     │      │     │ f11 │ f12 │ tog L_NORMAL │   │ tog L_NORMAL │          │          │          │          │          │        │
 //    └─────┴─────┼──────┼─────┼─────┼─────┼──────────────┘   └──────────────┼──────────┼──────────┼──────────┼──────────┼──────────┴────────┘
 //                │ boot │     │     │     │                                 │          │          │          │   boot   │
 //                └──────┴─────┴─────┴─────┘                                 └──────────┴──────────┴──────────┴──────────┘
-  &none   &none    &none         &none     &none     &none                                       &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4   &bt BT_CLR
-  &none   &kp F1   &kp F2        &kp F3    &kp F4    &none                                       &out OUT_USB   &out OUT_BLE   &none          &none          &none          &none
-  &none   &kp F5   &kp F6        &kp F7    &kp F8    &none                                       &none          &none          &none          &none          &none          &none
-  &none   &kp F9   &kp F10       &kp F11   &kp F12   &none   &tog L_NORMAL       &tog L_NORMAL   &none          &none          &none          &none          &none          &none
-                   &bootloader   &none     &none     &none                                       &none          &none          &none          &bootloader
+  &none   &none    &none         &none    &none     &none                                         &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4   &bt BT_CLR
+  &none   &kp F6   &kp F7        &kp F8   &kp F9    &kp F10                                       &out OUT_USB   &out OUT_BLE   &none          &none          &none          &none
+  &none   &kp F1   &kp F2        &kp F3   &kp F4    &kp F5                                        &none          &none          &none          &none          &none          &none
+  &none   &none    &none         &none    &kp F11   &kp F12   &tog L_NORMAL       &tog L_NORMAL   &none          &none          &none          &none          &none          &none
+                   &bootloader   &none    &none     &none                                         &none          &none          &none          &bootloader
             >;
         };
 
