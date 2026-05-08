@@ -4,29 +4,6 @@
  * SPDX-License-Identifier: MIT
  */
 
-/*
-TODO:
-
-- Consider homerow mods, but only while the left thumb key is pressed.
-    - Only for Ctrl and Alt. Shift is unnecesary.
-
-- Consider a way of toggling the num pad with the right hand.
-    - Not hold, but toggle.
-
-- Allow Enter with ñ+k on all layers, not just the default one.
-    - This is to allow using it on the symbols or mumbers layer.
-    - Maybe using a combo?
-
-- Numbers with alt (left hand).
-    - Or maybe just use software for this.
-        - Same with Control.
-        - Not the idea, though.
-
-- Modal movement layer.
-    - Add deletion sub-layer
-    - Add selection sub-layer
- */
-
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/ext_power.h>
